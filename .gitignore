@@ -1,0 +1,10 @@
+# Python things
+
+venv/
+*.pyc
+__pycache__/
+
+# JS things
+
+build/
+node_modules/
