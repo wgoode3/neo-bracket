@@ -1,40 +1,40 @@
 #bracket {
-    position: relative;
-    width: 1270px;
-    height: 820px;
-    overflow: auto;
-    margin: 0 auto;
+  position: relative;
+  width: 1270px;
+  height: 820px;
+  overflow: auto;
+  margin: 0 auto;
 }
 
 [id*='game'] {
-    position: absolute;
+  position: absolute;
 }
 
 [id*='game'] button {
-    display: block;
-    box-sizing: border-box;
-    width: 130px;
-    height: 20px;
-    font-size: 0.8rem;
-    border: 0;
-    border-bottom: 2px solid var(--grey);;
-    border-radius: 0px !important;
-    background-color: var(--light);
+  display: block;
+  box-sizing: border-box;
+  width: 130px;
+  height: 20px;
+  font-size: 0.8rem;
+  border: 0;
+  border-bottom: 2px solid var(--grey);;
+  border-radius: 0px !important;
+  background-color: var(--light);
 }
 
 [id*='game'] button:disabled {
-    cursor: not-allowed !important;
-    border-bottom-color: var(--silver);
+  cursor: not-allowed !important;
+  border-bottom-color: var(--silver);
 }
 
 [id*='game'] button.win {
-    border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
 }
 
 [id*='game'] button.loss {
-    border-bottom-color: var(--silver);
-    text-decoration: line-through;
-    color: var(--silver);
+  border-bottom-color: var(--silver);
+  text-decoration: line-through;
+  color: var(--silver);
 }
 
 /* Round 1 */

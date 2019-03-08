@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './grimoire.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './grimoire.min.css';
+import './main.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

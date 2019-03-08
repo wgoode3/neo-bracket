@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import "react-router";
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class Navigation extends Component {
@@ -13,21 +11,25 @@ class Navigation extends Component {
         <ul className="nav-left">
           <li><Link to="/">Leaderboard</Link></li>
           <li><Link to="/bracket">Bracket</Link></li>
-          <li className="dropdown">
-            <a href="#!">User <i className="icon caret-down-d"></i></a>
-            <ul className="dropdown-content">
-              <li><Link to="/sign_up">Create an Account!</Link></li>
-              <li><Link to="/sign_in">Login</Link></li>
-            </ul>
-          </li>
         </ul>
         <ul className="nav-right">
-          <li><Link to="/sign_up">Create an Account!</Link></li>
-          <li><Link to="/sign_in">Login</Link></li>
+          <li className="dropdown">
+            <a href="#!">User ▼</a>
+            <ul className="dropdown-content">
+              <li><Link to="/sign_up">Sign Up!</Link></li>
+              <br />
+              <li><Link to="/sign_in">Sign In!</Link></li>
+              <br />
+              <li><Link to="/edit">Edit User</Link></li>
+              <br />
+              <li><Link to="/sign_out">Sign Out!</Link></li>
+            </ul>
+          </li>
         </ul>
       </nav>
     );
   }
+
 }
 
 export default Navigation;

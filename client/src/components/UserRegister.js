@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import "react-router";
+
 
 function serialize(form){
   let fd = {};
@@ -67,8 +67,9 @@ class UserRegister extends Component {
           <input type="submit" name="Submit" className="is-successful" />
         </form>
       </div>
-    )
-  };
+    );
+  }
+
 }
 
 export default UserRegister;

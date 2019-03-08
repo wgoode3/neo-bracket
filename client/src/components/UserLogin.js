@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import "react-router";
+
+
+function serialize(form){
+  let fd = {};
+  function getData(ele){
+    if(ele.tagName === "INPUT" && ele.type !== "submit"){
+      fd[ele.name] = ele.value;
+    }else if(ele.tagName === "SELECT"){
+      fd[ele.name] = ele.value;
+    }
+    for(let child of ele.childNodes){
+      getData(child);
+    }
+  }
+  getData(form);
+  return fd;
+}
 
 class UserLogin extends Component {
+
   render() {
     return (
       <div>
@@ -18,8 +35,9 @@ class UserLogin extends Component {
           <input type="submit" name="Submit" className="is-successful" />
         </form>
       </div>
-    )
+    );
   }
+  
 }
 
 export default UserLogin;

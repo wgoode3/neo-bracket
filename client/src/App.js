@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import "react-router";
-import {
-  BrowserRouter,
-  Route
-} from 'react-router-dom';
-import './main.css';
-
-// imported components
+import { BrowserRouter, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Leaderboard from './components/Leaderboard';
+import Bracket from './components/Bracket';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
-import Bracket from './components/Bracket';
+import UserEdit from './components/UserEdit';
 
 
 class App extends Component {
@@ -26,11 +21,13 @@ class App extends Component {
             <Route path="/bracket" component={Bracket} />
             <Route path="/sign_in" component={UserLogin} />
             <Route path="/sign_up" component={UserRegister} />
+            <Route path="/edit" component={UserEdit} />
           </div>
         </div>
       </BrowserRouter>
     );
   }
+  
 }
 
 export default App;
