@@ -1,0 +1,92 @@
+#bracket {
+    position: relative;
+    width: 1270px;
+    height: 820px;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+[id*='game'] {
+    position: absolute;
+}
+
+[id*='game'] button {
+    display: block;
+    box-sizing: border-box;
+    width: 130px;
+    height: 20px;
+    font-size: 0.8rem;
+    border: 0;
+    border-bottom: 2px solid var(--grey);;
+    border-radius: 0px !important;
+    background-color: var(--light);
+}
+
+[id*='game'] button:disabled {
+    cursor: not-allowed !important;
+    border-bottom-color: var(--silver);
+}
+
+[id*='game'] button.win {
+    border-bottom: 2px solid var(--primary);
+}
+
+[id*='game'] button.loss {
+    border-bottom-color: var(--silver);
+    text-decoration: line-through;
+    color: var(--silver);
+}
+
+/* Round 1 */
+#game31, #game32, #game33, #game34, #game35, #game36, #game37, #game38, 
+#game39, #game40, #game41, #game42, #game43, #game44, #game45, #game46 { left: 0px; }
+#game47, #game48, #game49, #game50, #game51, #game52, #game53, #game54, 
+#game55, #game56, #game57, #game58, #game59, #game60, #game61, #game62 { right: 0px; }
+#game31, #game47 { top: 0px; }
+#game32, #game48 { top: 50px; }
+#game33, #game49 { top: 100px; }
+#game34, #game50 { top: 150px; }
+#game35, #game51 { top: 200px; }
+#game36, #game52 { top: 250px; }
+#game37, #game53 { top: 300px; }
+#game38, #game54 { top: 350px; }
+#game39, #game55 { top: 420px; }
+#game40, #game56 { top: 470px; }
+#game41, #game57 { top: 520px; }
+#game42, #game58 { top: 570px; }
+#game43, #game59 { top: 620px; }
+#game44, #game60 { top: 670px; }
+#game45, #game61 { top: 720px; }
+#game46, #game62 { top: 770px; }
+
+/* Round 2 */
+#game15, #game16, #game17, #game18, #game19, #game20, #game21, #game22 { left: 140px; }
+#game23, #game24, #game25, #game26, #game27, #game28, #game29, #game30 { right: 140px; }
+#game15, #game23 { top: 30px; }
+#game16, #game24 { top: 120px; }
+#game17, #game25 { top: 230px; }
+#game18, #game26 { top: 320px; }
+#game19, #game27 { top: 450px; }
+#game20, #game28 { top: 540px; }
+#game21, #game29 { top: 650px; }
+#game22, #game30 { top: 740px; }
+
+/* Sweet 16 */
+#game7, #game8, #game9, #game10 { left: 280px; }
+#game11, #game12, #game13, #game14 { right: 280px; }
+#game7, #game11 { top: 80px; }
+#game8, #game12 { top: 270px; }
+#game9, #game13 { top: 500px; }
+#game10, #game14 { top: 690px; }
+
+/* Elite 8 */
+#game3, #game4 { left: 420px; }
+#game5, #game6 { right: 420px; }
+#game3, #game5 { top: 175px }
+#game4, #game6 { top: 595px }
+
+/* Final 4 and Championship */
+#game1, #game2, #game0 { top: 385px; }
+#game1 { left: 420px; }
+#game2 { right: 420px; }
+#game0 { left: 570px; }

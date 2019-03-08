@@ -1,43 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import axios from 'axios';
+import "react-router";
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom';
+import './main.css';
+
+// imported components
+import Navigation from './components/Navigation';
+import Leaderboard from './components/Leaderboard';
+import UserLogin from './components/UserLogin';
+import UserRegister from './components/UserRegister';
+import Bracket from './components/Bracket';
+
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      "users": [],
-      "test_message": ""
-    }
-  }
-
-  componentDidMount = () => {
-    console.log("inside App.js");
-    // get request: WORKS
-    axios.get("/example").then( res => {
-      console.log(res);
-      this.setState({
-        test_message: res.data.status
-      })
-    }).catch( err => {
-      console.log(err);
-    });
-    // post request: WORKS
-    axios.post("/example", {"test": "12345"}).then( res => {
-      console.log(res);
-    }).catch( err => {
-      console.log(err);
-    });
-  }
-
   render() {
     return (
-      <div>
-        <h1>Neo-Bracket</h1>
-        <p>Secret message is: {this.state.test_message}</p>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Navigation />
+          <div className="container">
+            <Route exact path="/" component={Leaderboard} />
+            <Route path="/bracket" component={Bracket} />
+            <Route path="/sign_in" component={UserLogin} />
+            <Route path="/sign_up" component={UserRegister} />
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

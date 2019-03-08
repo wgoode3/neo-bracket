@@ -1,5 +1,6 @@
 from flask import Flask, send_from_directory, jsonify, request
 import os
+from models.user import User
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REACT_DIR = os.path.join(BASE_DIR, "client/build")
@@ -10,15 +11,12 @@ print("React directory is", REACT_DIR)
 
 app = Flask(__name__, static_folder=STATIC_DIR)
 
-"""
-example get request
-"""
-@app.route("/example", methods=['GET', 'POST'])
+@app.route("/user", methods=['GET', 'POST'])
 def example():
     if request.method == 'POST':
         print("we're getting a post request", request.json)
     elif request.method == 'GET':
-        print("we're getting a get")
+        print("we're getting a get request")
     return jsonify({"status": "daijoubu"})
 
 """
