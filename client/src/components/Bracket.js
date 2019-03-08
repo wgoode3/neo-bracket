@@ -17,8 +17,8 @@ class Tournament {
         let t2 = false;
         let game_id = this.games.length;
         if(round === num_rounds) {
-            t1 = teams[team_index++];
-            t2 = teams[team_index++];
+          t1 = teams[team_index++];
+          t2 = teams[team_index++];
         }
         this.games.push({id: game_id, round: round, team1: t1, team2: t2, winner: null});
       }
@@ -30,16 +30,16 @@ class Tournament {
 class Bracket extends Component {
 
   constructor(props){
-      super(props);
-      this.state = {
-          games: []
-      };
+    super(props);
+    this.state = {
+      games: []
+    };
   }
 
   componentDidMount = () => {
-      this.setState({
-          games: new Tournament(teams).games
-      });
+    this.setState({
+      games: new Tournament(teams).games
+    });
   }
 
   // TODO: fix bug where previous winner remains when 

@@ -1,22 +1,39 @@
 from flask import Flask, send_from_directory, jsonify, request
 import os
-from models.user import User
+from models.user import User, initialize
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REACT_DIR = os.path.join(BASE_DIR, "client/build")
 STATIC_DIR = os.path.join(REACT_DIR, "static")
 
-print("Project directory is", BASE_DIR)
-print("React directory is", REACT_DIR)
 
 app = Flask(__name__, static_folder=STATIC_DIR)
+app.config["MONGO_URI"] = "mongodb://localhost:27017/bracket"
+initialize(app)
 
-@app.route("/user", methods=['GET', 'POST'])
-def example():
+@app.route("/users", methods=['GET', 'POST'])
+def users():
     if request.method == 'POST':
-        print("we're getting a post request", request.json)
+        user = User(request.json, "register")
+        if user.is_valid:
+            results = user.create()
+            return jsonify({"status": "daijoubu"})
+        else:
+            return jsonify({"errors": user.errors})
     elif request.method == 'GET':
-        print("we're getting a get request")
+        users = User({}, "").get_all()
+    return jsonify({"status": "daijoubu", "users": users})
+
+@app.route("/session", methods=['GET', 'POST'])
+def sessions():
+    if request.method == 'POST':
+        user = User(request.json, "login")
+        if user.is_valid:
+            return jsonify({"status": "daijoubu"})
+        else:
+            return jsonify({"errors": user.errors})
+    elif request.method == 'GET':
+        pass
     return jsonify({"status": "daijoubu"})
 
 """
@@ -33,4 +50,3 @@ def send_react(path):
 
 if __name__ == "__main__":
     app.run(debug=True)
-    

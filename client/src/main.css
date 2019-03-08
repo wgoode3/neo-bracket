@@ -1,3 +1,7 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -14,10 +18,147 @@
 
 .container {
   margin-top: 60px;
+  min-height: calc(100vh - 260px);
 }
 
 .nav-right .dropdown .dropdown-content {
   box-sizing: border-box;
   padding: 0 20px 20px 20px;
   margin-left: -100px;
+}
+
+.form-blob {
+  margin: 100px auto;
+  box-sizing: border-box;
+  max-width: 640px;
+  min-height: 500px;
+  background-color: var(--light);
+  border-radius: 0 0 5px 5px;
+}
+
+.form-header {
+  padding: 25px 25px 25px 50px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+
+.form-blob form {
+  padding: 10px 50px 50px 50px;
+  overflow: auto;
+}
+
+.input-group {
+  box-sizing: border-box;
+  padding-right: 10px;
+  vertical-align: top;
+}
+
+.input-group input {
+  background-color: inherit;
+}
+
+.input-group input:focus {
+  border-color: var(--primary);
+}
+
+.input-group.error input {
+  border-color: var(--danger) !important;
+}
+
+.input-group.error > input:placeholder-shown:focus + label {
+  color: var(--danger) !important;
+}
+
+.input-group.error > input:not(:placeholder-shown):focus + label {
+  color: var(--danger) !important;
+}
+
+.input-group.error input:focus label {
+  color: var(--danger) !important;
+}
+
+.validation {
+  color: var(--danger);
+  font-size: 0.9rem;
+  height: 25px;
+}
+
+.form-blob form input[type='submit'] {
+  float: right;
+  margin: 20px 20px 0 0;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+}
+
+.form-link {
+  color: var(--dark);
+  font-size: 1.2rem;
+  text-decoration: none;
+  position: relative;
+  padding: 2px;
+  top: 20px;
+  border-bottom: 2px solid var(--dark);
+}
+
+.form-link:hover {
+  color: var(--grey);
+  border-color: var(--grey);
+}
+
+/* autofill changes from */
+/* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid inherit;
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.select-group {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  border-radius: 0;
+  font-size: 1.2rem;
+  max-width: calc( 100% - 1px) !important;
+}
+
+.select-group select {
+  background-color: transparent;
+  border: none;
+  line-height: 1.5;
+  padding: 0.2em 0;
+  border-bottom: 2px solid var(--silver);
+  margin-top: 4px;
+}
+
+.select-group label {
+  color: #777;
+}
+
+.select-group select:focus {
+  border-color: var(--primary);
+}
+
+.select-group select:focus + label {
+  color: var(--primary);
+}
+
+/* custom changes to match those in input group */
+
+.select-group {
+  box-sizing: border-box;
+  padding-right: 10px;
+  vertical-align: top;
 }

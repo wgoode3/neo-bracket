@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -24,7 +25,9 @@ class UserRegister extends Component {
     super(props);
     this.state = {
       user: {
-        "username": "",
+        "first_name": "",
+        "last_name": "",
+        "location": "",
         "email": "",
         "password": "",
         "confirm": ""
@@ -36,8 +39,12 @@ class UserRegister extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({user: serialize(e.target)}, () => {
-      axios.post("/user", this.state.user).then( res => {
-        console.log(res);
+      axios.post("/users", this.state.user).then( res => {
+        if(res.data.errors){
+          this.setState({errors: res.data.errors});
+        }else{
+          this.props.history.push("/");
+        }
       }).catch(err => {
         console.log("something went wrong", err);
       });
@@ -46,25 +53,88 @@ class UserRegister extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form-blob">
+        <h2 className="form-header">Make an account</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="input-group">
-            <input type="text" name="username" id="username" placeholder="Username" autoComplete="username" />
-            <label htmlFor="username">Username</label>
+          <div className="row">  
+            <div className={"input-group col-s-6" + (this.state.errors.first_name ? " error": "")}>
+              <p className="validation">
+                {
+                  (this.state.errors.first_name) ? 
+                  <span>{this.state.errors.first_name}</span> : 
+                  <span></span>
+                }
+              </p>
+              <input type="text" name="first_name" id="first_name" placeholder="First name" autoComplete="first_name" />
+              <label htmlFor="first_name">First name</label>
+            </div>
+            <div className={"input-group col-s-6" + (this.state.errors.last_name ? " error": "")}>
+              <p className="validation">
+                {
+                  (this.state.errors.last_name) ? 
+                  <span>{this.state.errors.last_name}</span> : 
+                  <span></span>
+                }
+              </p>
+              <input type="text" name="last_name" id="last_name" placeholder="Last name" autoComplete="last_name" />
+              <label htmlFor="last_name">Last name</label>
+            </div>
+            <div className="select-group col-s-6">
+              {/* p tag for spacing purposes only this time */}
+              {/* not like any selection can be invalid */}
+              <p></p> 
+              <select name="location" id="location">
+                <option>Berkeley, CA</option>
+                <option>Boise, ID</option>
+                <option>Burbank, CA</option>
+                <option>Chicago, IL</option>
+                <option>Dallas, TX</option>
+                <option>Orange County, CA</option>
+                <option>San Jose, CA</option>
+                <option>Seattle, WA</option>
+                <option>Tulsa, OK</option>
+                <option>Tysons Corner, VA</option>
+                <option>Online</option>
+                <option>Other</option>
+              </select>
+              <label htmlFor="location">Location</label>
+            </div>
+            <div className={"input-group col-s-6" + (this.state.errors.email ? " error": "")}>
+              <p className="validation">
+                {
+                  (this.state.errors.email) ? 
+                  <span>{this.state.errors.email}</span> : 
+                  <span></span>
+                }
+              </p>
+              <input type="text" name="email" id="email" placeholder="Email" autoComplete="email" />
+              <label htmlFor="email">Email Address</label>
+            </div>
+            <div className={"input-group col-s-6" + (this.state.errors.password ? " error": "")}>
+              <p className="validation">
+                {
+                  (this.state.errors.password) ? 
+                  <span>{this.state.errors.password}</span> : 
+                  <span></span>
+                }
+              </p>
+              <input type="password" name="password" id="password" placeholder="Password" autoComplete="new-password" />
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className={"input-group col-s-6" + (this.state.errors.confirm ? " error": "")}>
+              <p className="validation">
+                {
+                  (this.state.errors.confirm) ? 
+                  <span>{this.state.errors.confirm}</span> : 
+                  <span></span>
+                }
+              </p>
+              <input type="password" name="confirm" id="confirm" placeholder="Confirm" autoComplete="new-password" />
+              <label htmlFor="confirm">Confirm Password</label>
+            </div>
           </div>
-          <div className="input-group">
-            <input type="text" name="email" id="email" placeholder="Email" autoComplete="email" />
-            <label htmlFor="email">Email Address</label>
-          </div>
-          <div className="input-group">
-            <input type="password" name="password" id="password" placeholder="Password" autoComplete="new-password" />
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="input-group">
-            <input type="password" name="confirm" id="confirm" placeholder="Confirm" autoComplete="new-password" />
-            <label htmlFor="confirm">Confirm Password</label>
-          </div>
-          <input type="submit" name="Submit" className="is-successful" />
+          <input type="submit" name="Submit" className="is-primary is-larger" value="Sign up" />
+          <Link to="/sign_in" className="form-link">I already have an account</Link>
         </form>
       </div>
     );

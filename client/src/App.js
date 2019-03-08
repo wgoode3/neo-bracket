@@ -17,8 +17,8 @@ class App extends Component {
         <div>
           <Navigation />
           <div className="container">
-            <Route exact path="/" component={Leaderboard} />
-            <Route path="/bracket" component={Bracket} />
+            <Route exact path="/" component={Bracket} />
+            <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/sign_in" component={UserLogin} />
             <Route path="/sign_up" component={UserRegister} />
             <Route path="/edit" component={UserEdit} />
