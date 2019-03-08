@@ -80,9 +80,7 @@ class UserRegister extends Component {
               <label htmlFor="last_name">Last name</label>
             </div>
             <div className="select-group col-s-6">
-              {/* p tag for spacing purposes only this time */}
-              {/* not like any selection can be invalid */}
-              <p></p> 
+              <p>{/* p tag for spacing purposes only */}</p> 
               <select name="location" id="location">
                 <option>Berkeley, CA</option>
                 <option>Boise, ID</option>
@@ -94,8 +92,8 @@ class UserRegister extends Component {
                 <option>Seattle, WA</option>
                 <option>Tulsa, OK</option>
                 <option>Tysons Corner, VA</option>
-                <option>Online</option>
                 <option>Other</option>
+                <option>Online</option>
               </select>
               <label htmlFor="location">Location</label>
             </div>

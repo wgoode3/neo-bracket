@@ -24,7 +24,7 @@
 .nav-right .dropdown .dropdown-content {
   box-sizing: border-box;
   padding: 0 20px 20px 20px;
-  margin-left: -100px;
+  margin-left: -50px;
 }
 
 .form-blob {
@@ -92,18 +92,18 @@
 }
 
 .form-link {
-  color: var(--dark);
+  color: #777;
   font-size: 1.2rem;
   text-decoration: none;
   position: relative;
   padding: 2px;
   top: 20px;
-  border-bottom: 2px solid var(--dark);
+  border-bottom: 2px solid #777;
 }
 
 .form-link:hover {
-  color: var(--grey);
-  border-color: var(--grey);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 /* autofill changes from */
@@ -156,7 +156,6 @@ select:-webkit-autofill:focus {
 }
 
 /* custom changes to match those in input group */
-
 .select-group {
   box-sizing: border-box;
   padding-right: 10px;
