@@ -8,9 +8,18 @@ def initialize(app):
             user = User(request.json, "register")
             if user.is_valid:
                 results = user.create()
-                return jsonify({"status": "daijoubu"})
+                return jsonify({"status": "daijoubu", "user_id": results})
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
             users = User({}, "").get_all()
-        return jsonify({"status": "daijoubu", "users": users})
+            return jsonify({"status": "daijoubu", "users": users})
+
+    @app.route("/users/<_id>", methods=['GET', 'POST'])
+    def user(_id):
+        print(_id)
+        if request.method == 'POST':
+            return jsonify({"status": "daijoubu"})
+        elif request.method == 'GET':
+            user = User({"_id":_id}, "").get_one()
+            return jsonify({"status": "daijoubu", "user": user})

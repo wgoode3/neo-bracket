@@ -7,9 +7,8 @@ def initialize(app):
         if request.method == 'POST':
             user = User(request.json, "login")
             if user.is_valid:
-                return jsonify({"status": "daijoubu"})
+                return jsonify({"status": "daijoubu", "user": user.data})
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
-            pass
-        return jsonify({"status": "daijoubu"})
+            return jsonify({"status": "daijoubu"})

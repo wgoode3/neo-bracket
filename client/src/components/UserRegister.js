@@ -43,7 +43,9 @@ class UserRegister extends Component {
         if(res.data.errors){
           this.setState({errors: res.data.errors});
         }else{
-          this.props.history.push("/");
+          localStorage.setItem("user_id", res.data.user_id);
+          this.props.onRegister();
+          this.props.history.push("/bracket");
         }
       }).catch(err => {
         console.log("something went wrong", err);

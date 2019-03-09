@@ -39,6 +39,8 @@ class UserLogin extends Component {
         if(res.data.errors){
           this.setState({errors: res.data.errors});
         }else{
+          localStorage.setItem("user_id", res.data.user._id);
+          this.props.onLogin();
           this.props.history.push("/");
         }
       }).catch(err => {
