@@ -1,32 +1,9 @@
 import React, { Component } from 'react';
-import { teams } from "../tournament";
+import { teams } from "../tournament2017";
+import Tournament from '../generateBracket';
 import Game from "./Game";
-import "../bracket.css";
 import axios from 'axios';
 
-
-class Tournament {
-
-  constructor(teams) {
-    this.games = [];
-    let num_rounds = Math.ceil(Math.log2(teams.length));
-    let team_index = 0;
-    for(let round=1; round<=num_rounds; round++) {
-      let num_games = 2 ** (round-1);
-      for(let game=0; game<num_games; game++) {
-        let t1 = false;
-        let t2 = false;
-        let game_id = this.games.length;
-        if(round === num_rounds) {
-          t1 = teams[team_index++];
-          t2 = teams[team_index++];
-        }
-        this.games.push({id: game_id, round: round, team1: t1, team2: t2, winner: null});
-      }
-    }
-  }
-
-}
 
 class Bracket extends Component {
 
@@ -41,17 +18,15 @@ class Bracket extends Component {
     let user_id = localStorage.getItem("user_id");
     if(user_id !== null){
       axios.get(`/users/${user_id}`).then( res => {
-        console.log(res);
         if(res.data.user.bracket_complete) {
-          cb(res.data.user.bracket);
-        } else {
-          cb(null);
+          this.props.history.push("/mybracket");
         }
+        cb()
       }).catch( err => {
         console.log("something went wrong",  err);
       });
     } else {
-      cb(null);
+      cb()
     }
   }
 
@@ -75,16 +50,10 @@ class Bracket extends Component {
   }
 
   componentDidMount = () => {
-    this.getUser( games => {
-      if(games){
-        this.setState({
-          games: games
-        });
-      } else {
-        this.setState({
-          games: new Tournament(teams).games
-        });
-      }
+    this.getUser( () => {
+      this.setState({
+        games: new Tournament(teams).games
+      });
     });
   }
 

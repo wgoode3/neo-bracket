@@ -5,9 +5,12 @@ import axios from 'axios';
 import Navigation from './components/Navigation';
 import Leaderboard from './components/Leaderboard';
 import Bracket from './components/Bracket';
+import ViewBracket from './components/ViewBracket';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
 import UserEdit from './components/UserEdit';
+import Footer from './components/Footer';
+import Admin from './components/Admin';
 
 
 class App extends Component {
@@ -16,7 +19,8 @@ class App extends Component {
     super(props);
     this.state = {
       user: {
-        first_name: ""
+        first_name: "",
+        bracket: []
       }
     }
   }
@@ -31,7 +35,7 @@ class App extends Component {
     let user_id = localStorage.getItem("user_id");
     axios.get(`/users/${user_id}`).then( res => {
       if(res.data.user){
-        this.setState({ user: res.data.user })
+        this.setState({ user: res.data.user });
       } else {
         localStorage.removeItem("user_id");
       }
@@ -41,18 +45,26 @@ class App extends Component {
   }
 
   removeUser = () => {
-    localStorage.removeItem("user_id");
-    this.setState({ user: {first_name: ""} });
+    axios.get("/api/logout").then( res => {
+      localStorage.removeItem("user_id");
+      this.setState({ user: {first_name: "", bracket: []} });
+    }).catch( err => {
+      console.log("something went wrong", err);
+    })
   }
 
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Navigation user={this.state.user} onLogout={this.removeUser}/>
+        <div className="router">
+          <Navigation user={this.state.user} onLogout={this.removeUser} />
           <div className="container">
             <Route exact path="/" component={Leaderboard} />
             <Route path="/bracket" component={Bracket} />
+            <Route 
+              path="/mybracket"
+              render={(props) => <ViewBracket {...props} games={this.state.user.bracket} />}
+            />
             <Route 
               path='/sign_in' 
               render={(props) => <UserLogin {...props} onLogin={this.getUser} />} 
@@ -62,7 +74,9 @@ class App extends Component {
               render={(props) => <UserRegister {...props} onRegister={this.getUser} />}
             />
             <Route path="/edit" component={UserEdit} />
+            <Route path="/admin" component={Admin} />
           </div>
+          <Footer />
         </div>
       </BrowserRouter>
     );

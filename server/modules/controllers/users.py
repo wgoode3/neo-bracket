@@ -12,12 +12,13 @@ def initialize(app):
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
-            users = User({}, "").get_all()
+            # users = User({}, "").get_all()
+            users = User({}, "").get_leaderboard()
             return jsonify({"status": "daijoubu", "users": users})
 
     @app.route("/users/<_id>", methods=['GET', 'POST'])
     def user(_id):
-        print(_id)
+        # TODO: check if the get is ever used
         if request.method == 'POST':
             return jsonify({"status": "daijoubu"})
         elif request.method == 'GET':

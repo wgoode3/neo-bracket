@@ -1,4 +1,5 @@
 from flask_pymongo import PyMongo
+from flask import session
 import bcrypt, bson, json, re
 
 EMAIL_CHECK = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
@@ -17,6 +18,7 @@ class User:
         self.email = form_data.get("email", "").lower()
         self.password = form_data.get("password", "")
         self.confirm = form_data.get("confirm", "")
+        self.is_admin = False
         if action == "register":
             self.is_valid, self.errors = self.__validate_register()
         elif action == "login":
@@ -85,7 +87,12 @@ class User:
             if not bcrypt.checkpw(self.password.encode(), user['password'].encode()):
                 errors["password"] = "Incorrect Password"
 
-        valid = len(errors) == 0
+        if len(errors) > 0:
+            valid = False
+        else:
+            if user["is_admin"]:
+                session["_id"] = user["_id"]
+                session["is_admin"] = True
         return (valid, errors, user)
 
     def create(self):
@@ -109,6 +116,12 @@ class User:
 
     def get_all(self):
         users = [user for user in mongo.db.users.find({})]
+        for i in range(len(users)):
+            users[i]["_id"] = str(users[i]["_id"])
+        return users
+
+    def get_leaderboard(self):
+        users = [user for user in mongo.db.users.find({}) if not user["is_admin"]]
         for i in range(len(users)):
             users[i]["_id"] = str(users[i]["_id"])
         return users

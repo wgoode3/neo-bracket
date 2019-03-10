@@ -25,7 +25,11 @@ class Navigation extends Component {
         <ul className="nav-left">
           <li><a href="#!" onClick={this.doNothing}>Dojo Bracket</a></li>
           <li><Link to="/">Leaderboard</Link></li>
-          <li><Link to="/bracket">My Bracket</Link></li>
+          {
+            (this.props.user.bracket_complete) ?
+            <li><Link to="/mybracket">My Bracket</Link></li> :
+            <li><Link to="/bracket">My Bracket</Link></li>
+          }
         </ul>
         <ul className="nav-right">
           <li className="dropdown">
