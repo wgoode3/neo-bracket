@@ -13,7 +13,7 @@ def initialize(app):
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
             # users = User({}, "").get_all()
-            users = User({}, "").get_leaderboard()
+            users = User().get_leaderboard()
             return jsonify({"status": "daijoubu", "users": users})
 
     @app.route("/users/<_id>", methods=['GET', 'POST'])
@@ -22,5 +22,5 @@ def initialize(app):
         if request.method == 'POST':
             return jsonify({"status": "daijoubu"})
         elif request.method == 'GET':
-            user = User({"_id":_id}, "").get_one()
+            user = User({"_id":_id}).get_one()
             return jsonify({"status": "daijoubu", "user": user})

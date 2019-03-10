@@ -9,7 +9,6 @@ import ViewBracket from './components/ViewBracket';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister';
 import UserEdit from './components/UserEdit';
-import Footer from './components/Footer';
 import Admin from './components/Admin';
 
 
@@ -76,7 +75,6 @@ class App extends Component {
             <Route path="/edit" component={UserEdit} />
             <Route path="/admin" component={Admin} />
           </div>
-          <Footer />
         </div>
       </BrowserRouter>
     );

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ViewBracket from './ViewBracket';
+import Footer from './Footer';
+
 
 class Leaderboard extends Component {
 
@@ -16,15 +18,13 @@ class Leaderboard extends Component {
     axios.get("/users").then(res => {
       this.setState({users: res.data.users});
     }).catch(err => {
-      console.log(err);
+      console.log("something went wrong", err);
     })
   }
 
   view = (user_id) => {
-    console.log("we want to view", user_id);
     for(let user of this.state.users) {
       if(user._id === user_id) {
-        console.log(user);
         this.setState({ info: user.bracket });
         break
       }
@@ -76,6 +76,9 @@ class Leaderboard extends Component {
           <span className="close top-right" onClick={this.close}>&times;</span>
           <ViewBracket games={this.state.info}/>
         </div>
+
+        <Footer />
+
       </div>
     );
   }

@@ -1,6 +1,7 @@
 from flask import send_from_directory
 import os
 
+# gotta catch 'em all
 def initialize(app, react_location):
     @app.route("/", defaults={'path': ''})
     @app.route("/<path:path>")

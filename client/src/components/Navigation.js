@@ -23,13 +23,8 @@ class Navigation extends Component {
     return (
       <nav className="navbar nav-dark">
         <ul className="nav-left">
-          <li><a href="#!" onClick={this.doNothing}>Dojo Bracket</a></li>
+          <li><Link to="/">Dojo Bracket</Link></li>
           <li><Link to="/">Leaderboard</Link></li>
-          {
-            (this.props.user.bracket_complete) ?
-            <li><Link to="/mybracket">My Bracket</Link></li> :
-            <li><Link to="/bracket">My Bracket</Link></li>
-          }
         </ul>
         <ul className="nav-right">
           <li className="dropdown">
@@ -42,8 +37,14 @@ class Navigation extends Component {
             </a>
             <ul className="dropdown-content">
               {
+                (this.props.user.bracket_complete) ?
+                <li><Link to="/mybracket">My Bracket</Link></li> :
+                <li><Link to="/bracket">My Bracket</Link></li>
+              }
+              <br />
+              {
                 (this.props.user.first_name) ? 
-                <li><Link to="/edit">Edit User</Link></li> : 
+                <li><Link to="/edit">Edit Account</Link></li> : 
                 <li><Link to="/sign_up">Sign Up</Link></li>
               }
               <br />

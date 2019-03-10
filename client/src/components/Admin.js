@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { teams } from "../tournament2017";
-import Game from "./Game";
 import Tournament from '../generateBracket';
+import Game from "./Game";
+
 
 class Admin extends Component {
 

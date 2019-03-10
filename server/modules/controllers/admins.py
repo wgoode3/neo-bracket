@@ -8,11 +8,11 @@ def initialize(app):
         _id = session.get("_id", None)
         is_admin = session.get("is_admin", False)
         if is_admin:
-            user = User({"_id": _id}, "").get_one()
+            user = User({"_id": _id}).get_one()
             if user and user["is_admin"]:
                 
                 if request.method == 'POST':
-                    User({"_id": _id}, "").set_bracket(request.json)
+                    User({"_id": _id}).set_bracket(request.json)
                     return jsonify({"status": "daijoubu"})
                 elif request.method == 'GET':
                     return jsonify({"auth": True, "user": user})

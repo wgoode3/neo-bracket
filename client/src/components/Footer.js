@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class Footer extends Component {
 
   render() {
@@ -7,7 +8,13 @@ class Footer extends Component {
       <div className="footer">
         <p>
           Dojo Bracket 2019 | &nbsp;
-          <a href="https://github.com/wgoode3/neo-bracket">Fork me on GitHub</a>
+          <a
+            href="https://github.com/wgoode3/neo-bracket"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fork me on GitHub
+          </a>
         </p>
       </div>
     )

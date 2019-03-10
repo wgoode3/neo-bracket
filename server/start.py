@@ -1,10 +1,7 @@
 from modules import app, REACT_DIR
 from modules.models import user
-from modules.controllers import users
-from modules.controllers import sessions
-from modules.controllers import brackets
-from modules.controllers import admins
-from modules.controllers import catch_all
+from modules.controllers import users, sessions, brackets, admins
+from modules.utils import catch_all
 
 # models
 user.initialize(app)

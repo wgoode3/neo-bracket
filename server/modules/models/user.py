@@ -10,7 +10,7 @@ def initialize(app):
     mongo = PyMongo(app)
 
 class User:
-    def __init__(self, form_data, action):
+    def __init__(self, form_data={}, action=""):
         self._id = form_data.get("_id", "")
         self.first_name = form_data.get("first_name", "")
         self.last_name = form_data.get("last_name", "")

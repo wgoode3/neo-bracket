@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { teams } from "../tournament2017";
 import Tournament from '../generateBracket';
 import Game from "./Game";
-import axios from 'axios';
+import Footer from "./Footer";
 
 
 class Bracket extends Component {
@@ -39,13 +40,11 @@ class Bracket extends Component {
   }
 
   save = (e) => {
-    console.log("saving that thing", this.state.games);
     let user_id = localStorage.getItem("user_id");
     axios.post(`/bracket/${user_id}`, this.state.games).then( res => {
-      console.log(res);
       this.props.history.push("/");
     }).catch(err => {
-      console.log(err);
+      console.log("something went wrong", err);
     });
   }
 
@@ -124,6 +123,9 @@ class Bracket extends Component {
             </div>
           </div>
         </div>
+
+        <Footer />
+
       </div>
     );
   }
