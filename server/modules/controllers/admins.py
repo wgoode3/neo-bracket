@@ -17,6 +17,7 @@ def initialize(app):
                     return jsonify({"status": "daijoubu"})
                 elif request.method == 'GET':
                     return jsonify({"auth": True, "user": user})
+        return jsonify({"auth": False})
 
     @app.route("/api/admin/score")
     def score():

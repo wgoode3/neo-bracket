@@ -17,4 +17,4 @@ admins.initialize(app)
 catch_all.initialize(app, REACT_DIR)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

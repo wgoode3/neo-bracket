@@ -20,7 +20,7 @@ class Leaderboard extends Component {
       this.setState({users: res.data.users, filter: res.data.users});
     }).catch(err => {
       console.log("something went wrong", err);
-    })
+    });
   }
 
   view = (user_id) => {
@@ -31,6 +31,12 @@ class Leaderboard extends Component {
       }
     }
     document.getElementById("bracket-modal").classList.add("activated");
+  }
+
+  checkClose = (e) => {
+    if(e.target.id === "bracket-modal"){
+      this.close();
+    }
   }
 
   close = (e) => {
@@ -68,10 +74,10 @@ class Leaderboard extends Component {
             <option>Seattle, WA</option>
             <option>Tulsa, OK</option>
             <option>Tysons Corner, VA</option>
-            <option>Other</option>
             <option>Online</option>
+            <option>Other</option>
           </select>
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">Filter by location</label>
         </div>
         <table className="table centered">
           <thead>
@@ -108,7 +114,7 @@ class Leaderboard extends Component {
             }
           </tbody>
         </table>
-        <div className="modal" id="bracket-modal">
+        <div className="modal" id="bracket-modal" onClick={this.checkClose}>
           <div className="modal-content">
             <span className="close dark top-right" onClick={this.close}>&times;</span>
             <ViewBracket games={this.state.info}/>
