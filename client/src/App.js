@@ -59,7 +59,10 @@ class App extends Component {
           <Navigation user={this.state.user} onLogout={this.removeUser} />
           <div className="container">
             <Route exact path="/" component={Leaderboard} />
-            <Route path="/bracket" component={Bracket} />
+            <Route 
+              path="/bracket"
+              render={(props) => <Bracket {...props} onRegister={this.getUser} />}
+            />
             <Route 
               path="/mybracket"
               render={(props) => <ViewBracket {...props} games={this.state.user.bracket} />}

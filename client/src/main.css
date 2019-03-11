@@ -60,7 +60,8 @@ button {
   max-width: 640px;
   min-height: 500px;
   background-color: var(--light);
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
+  text-align: left;
 }
 
 .form-header {
@@ -213,6 +214,10 @@ select:-webkit-autofill:focus {
   margin-bottom: 20px;
 }
 
+#bracket-modal .modal-content {
+  margin-bottom: 100px;
+}
+
 .close {
   color: var(--silver);
   float: right;
@@ -257,6 +262,7 @@ select:-webkit-autofill:focus {
   background-color: var(--light);
   margin: 0 auto;
   border-radius: 5px;
+  text-align: left;
 }
 
 .message .heading {
@@ -338,7 +344,7 @@ select:-webkit-autofill:focus {
 }
 
 .avatar {
-  height: 128px;
+  width: 128px;
 }
 
 .avatar-m {
@@ -389,4 +395,22 @@ select:-webkit-autofill:focus {
 
 .modal-link:hover {
   color: var(--primary);
+}
+
+.nudge-up {
+  position: relative;
+  bottom: 100px;
+}
+
+.img-upload-label {
+  width: 128px;
+  display: block;
+  text-align: center;
+  color: var(--danger);
+}
+
+.file-error {
+  margin-top: 10px;
+  width: 128px;
+  color: var(--danger);
 }

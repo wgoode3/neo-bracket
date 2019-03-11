@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
+function valid_filetype(filename) {
+  const allowed_extensions = [".jpg", ".jpeg", ".png", ".gif"];
+  let valid = false;
+  for(let extension of allowed_extensions) {
+    if(filename.endsWith(extension)){
+      valid = true;
+    }
+  }
+  return valid;
+}
+
 class UserEdit extends Component {
   
   constructor(props) {
@@ -10,7 +21,8 @@ class UserEdit extends Component {
       user: {},
       file_name: "",
       image: "",
-      errors: {}
+      errors: {},
+      file_error: ""
     }
   }
 
@@ -56,6 +68,16 @@ class UserEdit extends Component {
 
   imageUpload = (e) => {
     let file = e.target.files[0];
+    // ugly validations here
+    if(!valid_filetype(file.name)) {
+      this.setState({file_error: "Image must be jpg, png, or gif"});
+      return;
+    } else if(file.size > 1048576) {
+      this.setState({file_error: "Image must be less than 1MB"});
+      return;
+    } else {
+      this.setState({file_error: ""});
+    }
     let reader = new FileReader();
     let avatar = document.getElementById("avatar");
     reader.addEventListener("load", () => {
@@ -77,8 +99,9 @@ class UserEdit extends Component {
               <label className="img-upload">
                 <img className="avatar" src={"/media/" + this.state.user.avatar} alt="avatar" id="avatar" />
                 <input type="file" name="img" onChange={this.imageUpload} />
-                <p className="centered">click to change</p>
+                <p className="img-upload-label">click to change</p>
               </label>
+              <p className="file-error">{this.state.file_error}</p>
             </div>
             <div className="row col-s-8">  
               <div className={"input-group col-s-6" + (this.state.errors.first_name ? " error": "")}>

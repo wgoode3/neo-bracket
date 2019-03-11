@@ -122,9 +122,10 @@ class User:
         elif not EMAIL_CHECK.match(self.email):
             errors["email"] = "Please enter a valid email"
         else:
-            #TODO: allow user to keep previous email
-            #TODO: prevent user from changing their email to someone else's
-            pass
+            result = mongo.db.users.find({"email": self.email})
+            users_with_email = [user for user in result if str(user["_id"]) != self._id]
+            if len(users_with_email) > 0:
+                errors["email"] = "Email already exists"
 
         valid = len(errors) == 0
         return (valid, errors)
@@ -138,7 +139,7 @@ class User:
                 "location": self.location,
                 "email": self.email,
                 "password": bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode(),
-                "avatar": "default",
+                "avatar": "default.png",
                 "is_admin": False,
                 "bracket_complete": False,
                 "bracket": [],
@@ -180,8 +181,10 @@ class User:
                 img_path = os.path.join(MEDIA_DIR,  file_name)
                 with open(img_path, 'wb') as img:
                     img.write(base64.b64decode(self.image.split(',')[-1]))
+                    # delete previous image if user is changing from not default
+                    if self.avatar != "default.png":
+                        os.remove(os.path.join(MEDIA_DIR, self.avatar))
                     self.avatar = file_name
-                    # TODO: remove previous avatar when updating (if not default)
         return mongo.db.users.update(
             {
                 "_id": bson.objectid.ObjectId(self._id)
@@ -214,6 +217,8 @@ class User:
         results = mongo.db.users.find({"_id": bson.objectid.ObjectId(self._id)})
         bracket = results[0]['bracket']
         users = [user for user in mongo.db.users.find({}) if user["bracket_complete"]]
+
+        # score the brackets against the admin's bracket
         if bracket[0]["winner"]:
             for user in users:
                 score = 0

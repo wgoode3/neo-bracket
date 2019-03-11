@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ViewGame from "./ViewGame";
+import Footer from './Footer';
 
 
 class ViewBracket extends Component {
@@ -10,12 +11,15 @@ class ViewBracket extends Component {
 
   render() {
     return (
-      <div className="view-bracket">
-        {
-          this.props.games.map( game => 
-            <ViewGame game={game} />
-          )
-        }
+      <div>
+        <div className="view-bracket">
+          {
+            this.props.games.map( game => 
+              <ViewGame game={game} />
+            )
+          }
+        </div>
+        <Footer />
       </div>
     )
   }

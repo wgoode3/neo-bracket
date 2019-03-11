@@ -9,3 +9,6 @@ STATIC_DIR = os.path.join(REACT_DIR, "static")
 app = Flask(__name__, static_folder=STATIC_DIR)
 app.secret_key = "poiugvchdbjsqwemjsd"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/bracket"
+# images should be less than 1MB, but base64 encoded
+# this hopefully should be large enough
+app.config['MAX_CONTENT_LENGTH'] = 1.4 * 1024 * 1024
