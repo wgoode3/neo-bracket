@@ -39,7 +39,7 @@ class UserRegister extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({user: serialize(e.target)}, () => {
-      axios.post("/users", this.state.user).then( res => {
+      axios.post("/api/users", this.state.user).then( res => {
         if(res.data.errors){
           this.setState({errors: res.data.errors});
         }else{

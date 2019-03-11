@@ -106,9 +106,10 @@ class User:
                 "password": bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode(),
                 "avatar": "default",
                 "is_admin": False,
-                "backet_complete": False,
+                "bracket_complete": False,
                 "bracket": [],
-                "score": 0
+                "score": 0,
+                "rank": 0
             })
             result = str(result)
         # we get the user's _id back as an object_id
@@ -124,7 +125,8 @@ class User:
         users = [user for user in mongo.db.users.find({}) if not user["is_admin"]]
         for i in range(len(users)):
             users[i]["_id"] = str(users[i]["_id"])
-        return users
+        return sorted(users, key=lambda u: -u["score"])
+        
 
     def get_one(self):
         results = mongo.db.users.find({"_id": bson.objectid.ObjectId(self._id)})
@@ -148,3 +150,44 @@ class User:
                 }
             }
         )
+    
+    def score(self):
+        results = mongo.db.users.find({"_id": bson.objectid.ObjectId(self._id)})
+        bracket = results[0]['bracket']
+        users = [user for user in mongo.db.users.find({}) if user["bracket_complete"]]
+        if bracket[0]["winner"]:
+            for user in users:
+                score = 0
+                for i in range(len(bracket)):
+                    if bracket[i]["winner"]["id"] == user["bracket"][i]["winner"]["id"]:
+                        score += 2 ** (6-bracket[i]["round"])
+                mongo.db.users.update(
+                    { "_id": bson.objectid.ObjectId(user["_id"]) }, 
+                    { "$set": { "score": score } }
+                )
+        else:
+            for user in users:
+                mongo.db.users.update(
+                    { "_id": bson.objectid.ObjectId(user["_id"]) }, 
+                    { "$set": { "score": 0 } }
+                )
+
+        # assign ranks to users
+        users = [user for user in users if not user["is_admin"]]
+        users = sorted(users, key=lambda u: -u["score"])
+        rank = 0
+        num_consecutive = 1
+        prev_score = 0
+        for user in users:
+
+            if user["score"] == prev_score:
+                num_consecutive += 1
+            else:
+                prev_score = user["score"]
+                rank += num_consecutive
+                num_consecutive = 1
+
+            mongo.db.users.update(
+                { "_id": bson.objectid.ObjectId(user["_id"]) }, 
+                { "$set": { "rank": rank } }
+            )

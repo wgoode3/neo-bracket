@@ -10,13 +10,14 @@ class Leaderboard extends Component {
     super(props);
     this.state = {
       users: [],
+      filter: [],
       info: []
     };
   }
 
   componentDidMount = () => {
-    axios.get("/users").then(res => {
-      this.setState({users: res.data.users});
+    axios.get("/api/users").then(res => {
+      this.setState({users: res.data.users, filter: res.data.users});
     }).catch(err => {
       console.log("something went wrong", err);
     })
@@ -36,22 +37,58 @@ class Leaderboard extends Component {
     document.getElementById("bracket-modal").classList.remove("activated");
   }
 
+  filter = (e) => {
+    let loc = e.target.value;
+    if(loc !== "All") {
+      let users = [];
+      for(let user of this.state.users) {
+        if(user.location === loc) {
+          users.push(user);
+        }
+      }
+      this.setState({filter: users});
+    } else {
+      this.setState({filter: this.state.users});
+    }
+  }
+
   render() {
     return (
       <div>
+        <div className="select-group col-s-4">
+          <select name="location" id="location" onChange={this.filter}>
+            <option>All</option>
+            <option>Berkeley, CA</option>
+            <option>Boise, ID</option>
+            <option>Burbank, CA</option>
+            <option>Chicago, IL</option>
+            <option>Dallas, TX</option>
+            <option>Orange County, CA</option>
+            <option>San Jose, CA</option>
+            <option>Seattle, WA</option>
+            <option>Tulsa, OK</option>
+            <option>Tysons Corner, VA</option>
+            <option>Other</option>
+            <option>Online</option>
+          </select>
+          <label htmlFor="location">Location</label>
+        </div>
         <table className="table centered">
           <thead>
             <tr>
+              <th>Rank</th>
+              <th>Score</th>
               <th>Name</th>
               <th>Location</th>
               <th>Bracket</th>
-              <th>Score</th>
             </tr>
           </thead>
           <tbody>
             {
-              this.state.users.map(user => 
+              this.state.filter.map(user => 
                 <tr key={user._id}>
+                  <td>{user.rank}</td>
+                  <td>{user.score}</td>
                   <td>{user.first_name} {user.last_name}</td>
                   <td>{user.location}</td>
                   <td>
@@ -66,15 +103,16 @@ class Leaderboard extends Component {
                       <p>Bracket Incomplete</p>
                     }
                   </td>
-                  <td>{user.score}</td>
                 </tr>
               )
             }
           </tbody>
         </table>
         <div className="modal" id="bracket-modal">
-          <span className="close top-right" onClick={this.close}>&times;</span>
-          <ViewBracket games={this.state.info}/>
+          <div className="modal-content">
+            <span className="close dark top-right" onClick={this.close}>&times;</span>
+            <ViewBracket games={this.state.info}/>
+          </div>
         </div>
 
         <Footer />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { teams } from "../tournament2017";
+import { teams } from "../tournament2018";
 import Tournament from '../generateBracket';
 import Game from "./Game";
 
@@ -51,17 +51,30 @@ class Admin extends Component {
   }
 
   save = () => {
-    axios.post("/api/admin", this.state.games).then( res => {
+    axios.put("/api/admin", this.state.games).then( res => {
       console.log(res);
     }).catch( err => {
       console.log("something went wrong", err);
     })
   }
 
+  score = () => {
+    axios.get("/api/admin/score").then( res => {
+      console.log(res);
+    }).then( err => {
+      console.log("something went wrong", err);
+    });
+  }
+
   render() {
     return (
       <div>
         <h1 className="text-center">Admin</h1>
+        <p className="text-center button-group">
+          <button className="is-link" onClick={this.reset}>Reset</button>
+          <button className="is-successful" onClick={this.save}>Save</button>
+          <button className="is-dangerous" onClick={this.score}>Score</button>
+        </p>
         <div class="view-bracket">
           {
             this.state.games.map( game => 
@@ -69,10 +82,6 @@ class Admin extends Component {
             )
           }
         </div>
-        <p className="text-center">
-          <button className="is-info" onClick={this.reset}>Reset</button>
-          <button className="is-successful" onClick={this.save}>Save</button>
-        </p>
       </div>
     );
   }

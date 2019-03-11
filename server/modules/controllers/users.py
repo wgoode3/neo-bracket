@@ -1,8 +1,9 @@
 from flask import jsonify, request
 from ..models.user import User
 
+
 def initialize(app):
-    @app.route("/users", methods=['GET', 'POST'])
+    @app.route("/api/users", methods=['GET', 'POST'])
     def users():
         if request.method == 'POST':
             user = User(request.json, "register")
@@ -16,9 +17,9 @@ def initialize(app):
             users = User().get_leaderboard()
             return jsonify({"status": "daijoubu", "users": users})
 
-    @app.route("/users/<_id>", methods=['GET', 'POST'])
+    @app.route("/api/users/<_id>", methods=['GET', 'POST'])
     def user(_id):
-        # TODO: check if the get is ever used
+        # TODO: check if the post is ever used
         if request.method == 'POST':
             return jsonify({"status": "daijoubu"})
         elif request.method == 'GET':

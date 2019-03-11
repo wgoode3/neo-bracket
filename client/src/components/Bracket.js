@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { teams } from "../tournament2017";
+import { teams } from "../tournament2018";
 import Tournament from '../generateBracket';
 import Game from "./Game";
 import Footer from "./Footer";
@@ -18,7 +18,7 @@ class Bracket extends Component {
   getUser = (cb) => {
     let user_id = localStorage.getItem("user_id");
     if(user_id !== null){
-      axios.get(`/users/${user_id}`).then( res => {
+      axios.get(`/api/users/${user_id}`).then( res => {
         if(res.data.user.bracket_complete) {
           this.props.history.push("/mybracket");
         }
@@ -41,7 +41,7 @@ class Bracket extends Component {
 
   save = (e) => {
     let user_id = localStorage.getItem("user_id");
-    axios.post(`/bracket/${user_id}`, this.state.games).then( res => {
+    axios.put(`/api/bracket/${user_id}`, this.state.games).then( res => {
       this.props.history.push("/");
     }).catch(err => {
       console.log("something went wrong", err);

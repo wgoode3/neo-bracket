@@ -32,7 +32,7 @@ class App extends Component {
 
   getUser = () => {
     let user_id = localStorage.getItem("user_id");
-    axios.get(`/users/${user_id}`).then( res => {
+    axios.get(`/api/users/${user_id}`).then( res => {
       if(res.data.user){
         this.setState({ user: res.data.user });
       } else {
@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   removeUser = () => {
-    axios.get("/api/logout").then( res => {
+    axios.delete("/api/session").then( res => {
       localStorage.removeItem("user_id");
       this.setState({ user: {first_name: "", bracket: []} });
     }).catch( err => {

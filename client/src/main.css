@@ -2,6 +2,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html {
+  max-height: 100vh;
+  overflow: auto;
+}
+
 body {
   max-height: 100vh;
   overflow: auto;
@@ -9,13 +14,13 @@ body {
 
 #root {
   /* min-height: calc(100vh - 260px); */
-  min-height: calc(100vh - 160px);
+  /* min-height: calc(100vh - 360px); */
   overflow: auto;
 }
 
 .router {
   /* min-height: calc(100vh - 260px); */
-  min-height: calc(100vh - 160px);
+  /* min-height: calc(100vh - 360px); */
   overflow: auto;
 }
 
@@ -36,7 +41,7 @@ body {
 
 .container {
   margin-top: 60px;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 200px);
 }
 
 .nav-right .dropdown .dropdown-content {
@@ -191,6 +196,17 @@ select:-webkit-autofill:focus {
   height: 100%;
   overflow: auto;
   background-color: #0006;
+  text-align: center;
+}
+
+.modal-content {
+  padding: 20px;
+  display: inline-block;
+  overflow: auto;
+  position: relative;
+  bottom: 50px;
+  background-color: var(--white);
+  margin-bottom: 20px;
 }
 
 .close {
@@ -205,6 +221,14 @@ select:-webkit-autofill:focus {
 .close:hover {
   color: var(--white);
   cursor: pointer;
+}
+
+.close.dark {
+  color: #777;
+}
+
+.close.dark:hover {
+  color: var(--primary);
 }
 
 .activated {
@@ -262,10 +286,14 @@ select:-webkit-autofill:focus {
   color: var(--dark);
 }
 
+.footer p a:hover {
+  color: var(--primary);
+}
+
 .top-right {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: absolute;
+  top: 0px;
+  right: 5px;
 }
 
 .view-bracket {
@@ -275,8 +303,6 @@ select:-webkit-autofill:focus {
   height: 820px;
   overflow: auto;
   margin: 0 auto;
-  /* margin-top: -50px; */
-  margin-bottom: 150px;
   content: "";
   clear: both;
   display: table;
@@ -284,4 +310,21 @@ select:-webkit-autofill:focus {
 
 .text-center {
   text-align: center;
+}
+
+.button-group {
+  padding: 20px;
+}
+
+.button-group button {
+  border-radius: 0 !important;
+  padding: 5px 10px;
+}
+
+.button-group button:first-child {
+  border-radius: 5px 0 0 5px !important;
+}
+
+.button-group button:last-child {
+  border-radius: 0 5px 5px 0 !important;
 }

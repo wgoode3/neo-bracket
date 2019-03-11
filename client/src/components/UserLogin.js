@@ -35,7 +35,7 @@ class UserLogin extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({login: serialize(e.target)}, () => {
-      axios.post("/session", this.state.login).then( res => {
+      axios.post("/api/session", this.state.login).then( res => {
         if(res.data.errors){
           this.setState({errors: res.data.errors});
         }else{
