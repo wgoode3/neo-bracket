@@ -8,3 +8,7 @@ __pycache__/
 
 build/
 node_modules/
+
+# Images
+
+avatars/
