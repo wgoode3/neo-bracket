@@ -31,8 +31,14 @@ class Navigation extends Component {
             <a href="#!" onClick={this.doNothing}>
               {
                 (this.props.user.first_name) ? 
-                this.props.user.first_name + " ▼" : 
-                "User ▼"
+                <span>
+                  <img src={"/media/" + this.props.user.avatar} alt="avatar" className="avatar-s" />
+                  {this.props.user.first_name + " ▼"}
+                </span> :
+                <span>
+                  <img src="/media/default.png" alt="avatar" className="avatar-s" />  
+                  User ▼
+                </span>
               }
             </a>
             <ul className="dropdown-content">
@@ -44,7 +50,7 @@ class Navigation extends Component {
               <br />
               {
                 (this.props.user.first_name) ? 
-                <li><Link to="/edit">Edit Account</Link></li> : 
+                <li><Link to="/edit">My Account</Link></li> : 
                 <li><Link to="/sign_up">Sign Up</Link></li>
               }
               <br />

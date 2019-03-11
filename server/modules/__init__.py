@@ -2,6 +2,7 @@ from flask import Flask
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+MEDIA_DIR = os.path.join(BASE_DIR, "avatars")
 REACT_DIR = os.path.join(BASE_DIR, "client/build")
 STATIC_DIR = os.path.join(REACT_DIR, "static")
 

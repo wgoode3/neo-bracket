@@ -82,7 +82,6 @@ class UserRegister extends Component {
               <label htmlFor="last_name">Last name</label>
             </div>
             <div className="select-group col-s-6">
-              <p>{/* p tag for spacing purposes only */}</p> 
               <select name="location" id="location">
                 <option>Berkeley, CA</option>
                 <option>Boise, ID</option>

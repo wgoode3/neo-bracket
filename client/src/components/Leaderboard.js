@@ -10,20 +10,33 @@ class Leaderboard extends Component {
     super(props);
     this.state = {
       users: [],
+      location: "All",
       filter: [],
       info: []
     };
   }
 
   componentDidMount = () => {
+    this.getData();
+    // updates the data every minute
+    this.dataRefresh = setInterval(this.getData, 60000);
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.dataRefresh);
+  }
+
+  getData = () => {
     axios.get("/api/users").then(res => {
       this.setState({users: res.data.users, filter: res.data.users});
     }).catch(err => {
       console.log("something went wrong", err);
     });
+    this.filterData();
   }
 
-  view = (user_id) => {
+  view = (user_id, e) => {
+    e.preventDefault();
     for(let user of this.state.users) {
       if(user._id === user_id) {
         this.setState({ info: user.bracket });
@@ -44,11 +57,16 @@ class Leaderboard extends Component {
   }
 
   filter = (e) => {
-    let loc = e.target.value;
-    if(loc !== "All") {
+    this.setState({location: e.target.value}, () => {
+      this.filterData();
+    });
+  }
+
+  filterData = () => {
+    if(this.state.location !== "All") {
       let users = [];
       for(let user of this.state.users) {
-        if(user.location === loc) {
+        if(user.location === this.state.location) {
           users.push(user);
         }
       }
@@ -79,7 +97,7 @@ class Leaderboard extends Component {
           </select>
           <label htmlFor="location">Filter by location</label>
         </div>
-        <table className="table centered">
+        <table className="table">
           <thead>
             <tr>
               <th>Rank</th>
@@ -95,18 +113,24 @@ class Leaderboard extends Component {
                 <tr key={user._id}>
                   <td>{user.rank}</td>
                   <td>{user.score}</td>
-                  <td>{user.first_name} {user.last_name}</td>
+                  <td>
+                    <img src={"/media/" + user.avatar} alt="avatar" className="avatar-m" />
+                    {user.first_name} {user.last_name}
+                  </td>
                   <td>{user.location}</td>
                   <td>
                     {
                       (user.bracket_complete) ? 
-                      <button 
-                        className="is-primary" 
+                      <a 
+                        href="#!" 
+                        className="modal-link" 
                         onClick={this.view.bind(this, user._id)}
                       >
-                        View
-                      </button> : 
-                      <p>Bracket Incomplete</p>
+                        View Bracket
+                      </a> : 
+                      <p>
+                        Bracket Incomplete
+                      </p>
                     }
                   </td>
                 </tr>

@@ -72,7 +72,10 @@ class App extends Component {
               path="/sign_up"
               render={(props) => <UserRegister {...props} onRegister={this.getUser} />}
             />
-            <Route path="/edit" component={UserEdit} />
+            <Route 
+              path="/edit" 
+              render={ (props) => <UserEdit {...props} user={this.state.user} onUpdate={this.getUser} />}
+            />
             <Route path="/admin" component={Admin} />
           </div>
         </div>

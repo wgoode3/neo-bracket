@@ -13,15 +13,18 @@ def initialize(app):
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
-            # users = User({}, "").get_all()
             users = User().get_leaderboard()
             return jsonify({"status": "daijoubu", "users": users})
 
-    @app.route("/api/users/<_id>", methods=['GET', 'POST'])
+    @app.route("/api/users/<_id>", methods=['GET', 'PUT'])
     def user(_id):
-        # TODO: check if the post is ever used
-        if request.method == 'POST':
-            return jsonify({"status": "daijoubu"})
+        if request.method == 'PUT':
+            user = User(request.json, "update")
+            if user.is_valid:
+                user.update()
+                return jsonify({"status": "daijoubu"})
+            else:
+                return jsonify({"errors": user.errors})
         elif request.method == 'GET':
             user = User({"_id":_id}).get_one()
             return jsonify({"status": "daijoubu", "user": user})

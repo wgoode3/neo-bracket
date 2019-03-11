@@ -1,5 +1,5 @@
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 html {
@@ -10,6 +10,10 @@ html {
 body {
   max-height: 100vh;
   overflow: auto;
+}
+
+button {
+  font-weight: 400;
 }
 
 #root {
@@ -47,7 +51,7 @@ body {
 .nav-right .dropdown .dropdown-content {
   box-sizing: border-box;
   padding: 0 20px 20px 20px;
-  margin-left: -50px;
+  margin-left: -40px;
 }
 
 .form-blob {
@@ -327,4 +331,62 @@ select:-webkit-autofill:focus {
 
 .button-group button:last-child {
   border-radius: 0 5px 5px 0 !important;
+}
+
+.avatar, .avatar-m, .avatar-s {
+  border-radius: 50%;
+}
+
+.avatar {
+  height: 128px;
+}
+
+.avatar-m {
+  height: 32px;
+  margin: auto 10px auto 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.avatar-s {
+  height: 24px;
+  margin: 12px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.img-upload img {
+  margin-top: 10px;
+}
+
+.img-upload:hover {
+  cursor: pointer;
+}
+
+.img-upload p {
+  display: inline-block;
+  color: #777;
+  padding: 2px;
+  border-bottom: 2px solid #777;
+}
+
+.img-upload:hover p {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.img-upload:hover img {
+  box-shadow: 0px 5px 5px var(--silver);
+}
+
+.img-upload input[type=file] {
+  display: none;
+}
+
+.modal-link {
+  color: var(--dark);
+}
+
+.modal-link:hover {
+  color: var(--primary);
 }

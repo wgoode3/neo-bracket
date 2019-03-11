@@ -1,13 +1,16 @@
 from flask_pymongo import PyMongo
 from flask import session
-import bcrypt, bson, json, re
+import base64, bcrypt, bson, json, os, re, time
 
 EMAIL_CHECK = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
+ALLOWED_EXTENSIONS = ('jpg', 'jgeg', 'png', 'gif')
 
 
-def initialize(app):
+def initialize(app, media_dir):
     global mongo
     mongo = PyMongo(app)
+    global MEDIA_DIR
+    MEDIA_DIR = media_dir
 
 class User:
     def __init__(self, form_data={}, action=""):
@@ -18,11 +21,16 @@ class User:
         self.email = form_data.get("email", "").lower()
         self.password = form_data.get("password", "")
         self.confirm = form_data.get("confirm", "")
+        self.file_name = form_data.get("file_name", "")
+        self.image = form_data.get("image", "")
+        self.avatar = form_data.get("avatar", "")
         self.is_admin = False
         if action == "register":
             self.is_valid, self.errors = self.__validate_register()
         elif action == "login":
             self.is_valid, self.errors, self.data = self.__validate_login()
+        elif action == "update":
+            self.is_valid, self.errors = self.__validate_update()
 
     def __validate_register(self):
         valid = True
@@ -95,6 +103,32 @@ class User:
                 session["is_admin"] = True
         return (valid, errors, user)
 
+    def __validate_update(self):
+        valid = True
+        errors = {}
+
+        if len(self.first_name) < 1:
+            errors["first_name"] = "First name is required"
+        elif len(self.first_name) < 2:
+            errors["first_name"] = "First name must be 2 characters or longer"
+        
+        if len(self.last_name) < 1:
+            errors["last_name"] = "Last name is required"
+        elif len(self.last_name) < 2:
+            errors["last_name"] = "Last name must be 2 characters or longer"
+        
+        if len(self.email) < 1:
+            errors["email"] = "Email is required"
+        elif not EMAIL_CHECK.match(self.email):
+            errors["email"] = "Please enter a valid email"
+        else:
+            #TODO: allow user to keep previous email
+            #TODO: prevent user from changing their email to someone else's
+            pass
+
+        valid = len(errors) == 0
+        return (valid, errors)
+
     def create(self):
         result = None
         if self.is_valid:
@@ -137,6 +171,31 @@ class User:
             return user
         else:
             return None
+
+    def update(self):
+        if self.file_name and self.image:
+            extension = self.file_name.split('.')[-1].lower()
+            if extension in ALLOWED_EXTENSIONS:
+                file_name = str(time.time()).split(".")[0] + "." + extension
+                img_path = os.path.join(MEDIA_DIR,  file_name)
+                with open(img_path, 'wb') as img:
+                    img.write(base64.b64decode(self.image.split(',')[-1]))
+                    self.avatar = file_name
+                    # TODO: remove previous avatar when updating (if not default)
+        return mongo.db.users.update(
+            {
+                "_id": bson.objectid.ObjectId(self._id)
+            }, 
+            {
+                "$set": {
+                    "first_name": self.first_name,
+                    "last_name": self.last_name,
+                    "location": self.location,
+                    "email": self.email,
+                    "avatar": self.avatar
+                }
+            }
+        )
 
     def set_bracket(self, bracket):
         return mongo.db.users.update(

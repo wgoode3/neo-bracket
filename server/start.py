@@ -1,16 +1,19 @@
-from modules import app, REACT_DIR
+from modules import app, REACT_DIR, MEDIA_DIR
 from modules.models import user
-from modules.controllers import users, sessions, brackets, admins
-from modules.utils import catch_all
+from modules.controllers import admins, brackets, sessions, users
+from modules.utils import catch_all, media
 
 # models
-user.initialize(app)
+user.initialize(app, MEDIA_DIR)
 
 # controllers
-users.initialize(app)
-sessions.initialize(app)
-brackets.initialize(app)
 admins.initialize(app)
+brackets.initialize(app)
+sessions.initialize(app)
+users.initialize(app)
+
+# sends images from /media
+media.initialize(app, MEDIA_DIR)
 
 # sends the react app
 # make sure this is last
