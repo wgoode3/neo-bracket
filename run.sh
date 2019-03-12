@@ -1,2 +1,3 @@
 source venv/bin/activate
-python server/start.py
+cd server
+gunicorn --bind 0.0.0.0:5000 wsgi:application
