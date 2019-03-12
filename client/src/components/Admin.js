@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { teams } from "../tournament2018";
+import { teams } from "../tournament2019";
 import Tournament from '../generateBracket';
 import Game from "./Game";
 

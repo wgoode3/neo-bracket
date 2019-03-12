@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { teams } from "../tournament2018";
+import { teams, start } from "../tournament2019";
 import Tournament from '../generateBracket';
 import Game from "./Game";
 import UserRegister from './UserRegister';
+
+const start_date = new Date(start);
 
 
 class Bracket extends Component {
@@ -122,6 +124,11 @@ class Bracket extends Component {
                   (this.state.user_exists) ? 
                   "" : 
                   "You will have to create an account to save your bracket."
+                }
+                {
+                  (start_date > new Date()) ? 
+                  "" : 
+                  " The tournament has already started. Your bracket will not be scored."
                 }
               </p>
               <p>
