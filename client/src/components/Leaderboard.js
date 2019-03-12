@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ViewBracket from './ViewBracket';
-import Footer from './Footer';
 
 
 class Leaderboard extends Component {
@@ -28,11 +27,13 @@ class Leaderboard extends Component {
 
   getData = () => {
     axios.get("/api/users").then(res => {
-      this.setState({users: res.data.users, filter: res.data.users});
+      this.setState({users: res.data.users, filter: res.data.users}, () => {
+        this.filterData();
+      });
     }).catch(err => {
       console.log("something went wrong", err);
     });
-    this.filterData();
+    
   }
 
   view = (user_id, e) => {
@@ -109,8 +110,8 @@ class Leaderboard extends Component {
           </thead>
           <tbody>
             {
-              this.state.filter.map(user => 
-                <tr key={user._id}>
+              this.state.filter.map( (user, index) => 
+                <tr key={index}>
                   <td>{user.rank}</td>
                   <td>{user.score}</td>
                   <td>
@@ -144,8 +145,6 @@ class Leaderboard extends Component {
             <ViewBracket games={this.state.info}/>
           </div>
         </div>
-
-        <Footer />
 
       </div>
     );

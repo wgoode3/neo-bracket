@@ -8,10 +8,10 @@ def initialize(app):
         if request.method == 'POST':
             user = User(request.json, "login")
             if user.is_valid:
-                return jsonify({"status": "daijoubu", "user": user.data})
+                return jsonify({"status": "ok", "user": user.data})
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'DELETE':
             session.clear()
-            return jsonify({"status": "daijoubu"})
+            return jsonify({"status": "ok"})
     

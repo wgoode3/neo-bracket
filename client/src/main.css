@@ -2,6 +2,18 @@
   font-family: 'Roboto', sans-serif !important;
 }
 
+/* WebKit/Blink Browsers */
+*::selection {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Gecko Browsers */
+*::-moz-selection {
+  background: var(--primary);
+  color: #fff;
+}
+
 html {
   max-height: 100vh;
   overflow: auto;
@@ -414,3 +426,7 @@ select:-webkit-autofill:focus {
   width: 128px;
   color: var(--danger);
 }
+
+
+
+/* end of the line */

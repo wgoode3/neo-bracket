@@ -14,7 +14,7 @@ def initialize(app):
                 
                 if request.method == 'PUT':
                     User({"_id": _id}).set_bracket(request.json)
-                    return jsonify({"status": "daijoubu"})
+                    return jsonify({"status": "ok"})
                 elif request.method == 'GET':
                     return jsonify({"auth": True, "user": user})
         return jsonify({"auth": False})
@@ -25,4 +25,4 @@ def initialize(app):
         is_admin = session.get("is_admin", False)
         if is_admin and _id:
             User({"_id": _id}).score()
-        return jsonify({"status": "daijoubu"})
+        return jsonify({"status": "ok"})

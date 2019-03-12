@@ -1,10 +1,10 @@
-from modules import app, REACT_DIR, MEDIA_DIR
+from modules import app, REACT_DIR, MEDIA_DIR, TOURNAMENT_START
 from modules.models import user
 from modules.controllers import admins, brackets, sessions, users
 from modules.utils import catch_all, media
 
 # models
-user.initialize(app, MEDIA_DIR)
+user.initialize(app, MEDIA_DIR, TOURNAMENT_START)
 
 # controllers
 admins.initialize(app)

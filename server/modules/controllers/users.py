@@ -9,12 +9,12 @@ def initialize(app):
             user = User(request.json, "register")
             if user.is_valid:
                 results = user.create()
-                return jsonify({"status": "daijoubu", "user_id": results})
+                return jsonify({"status": "ok", "user_id": results})
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
             users = User().get_leaderboard()
-            return jsonify({"status": "daijoubu", "users": users})
+            return jsonify({"status": "ok", "users": users})
 
     @app.route("/api/users/<_id>", methods=['GET', 'PUT'])
     def user(_id):
@@ -22,9 +22,9 @@ def initialize(app):
             user = User(request.json, "update")
             if user.is_valid:
                 user.update()
-                return jsonify({"status": "daijoubu"})
+                return jsonify({"status": "ok"})
             else:
                 return jsonify({"errors": user.errors})
         elif request.method == 'GET':
             user = User({"_id":_id}).get_one()
-            return jsonify({"status": "daijoubu", "user": user})
+            return jsonify({"status": "ok", "user": user})

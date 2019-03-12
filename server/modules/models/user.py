@@ -1,16 +1,19 @@
 from flask_pymongo import PyMongo
 from flask import session
+from datetime import datetime
 import base64, bcrypt, bson, json, os, re, time
 
 EMAIL_CHECK = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
 ALLOWED_EXTENSIONS = ('jpg', 'jgeg', 'png', 'gif')
 
 
-def initialize(app, media_dir):
+def initialize(app, media_dir, tournament_start):
     global mongo
     mongo = PyMongo(app)
     global MEDIA_DIR
     MEDIA_DIR = media_dir
+    global TOURNAMENT_START
+    TOURNAMENT_START = tournament_start
 
 class User:
     def __init__(self, form_data={}, action=""):
@@ -142,6 +145,7 @@ class User:
                 "avatar": "default.png",
                 "is_admin": False,
                 "bracket_complete": False,
+                "for_fun": False,
                 "bracket": [],
                 "score": 0,
                 "rank": 0
@@ -150,6 +154,7 @@ class User:
         # we get the user's _id back as an object_id
         return result
 
+    # TODO: check if this ever gets used
     def get_all(self):
         users = [user for user in mongo.db.users.find({})]
         for i in range(len(users)):
@@ -157,7 +162,7 @@ class User:
         return users
 
     def get_leaderboard(self):
-        users = [user for user in mongo.db.users.find({}) if not user["is_admin"]]
+        users = [user for user in mongo.db.users.find({"is_admin": False})]
         for i in range(len(users)):
             users[i]["_id"] = str(users[i]["_id"])
         return sorted(users, key=lambda u: -u["score"])
@@ -201,43 +206,41 @@ class User:
         )
 
     def set_bracket(self, bracket):
+        b = { "bracket_complete": True, "bracket": bracket }
+        """
+        If the user fills out the bracket after tournament start, 
+        mark it as "for fun" so it doesn't get scored
+        """
+        if(datetime.now() > TOURNAMENT_START):
+            b["for_fun"] = True
         return mongo.db.users.update(
-            {
-                "_id": bson.objectid.ObjectId(self._id)
-            }, 
-            {
-                "$set": {
-                    "bracket_complete": True,
-                    "bracket": bracket
-                }
-            }
+            { "_id": bson.objectid.ObjectId(self._id) }, 
+            { "$set": b }
         )
     
     def score(self):
         results = mongo.db.users.find({"_id": bson.objectid.ObjectId(self._id)})
         bracket = results[0]['bracket']
-        users = [user for user in mongo.db.users.find({}) if user["bracket_complete"]]
+        # remove admin, unfinished, or brackets after tournament start
+        to_score = {"for_fun": False, "bracket_complete": True, "is_admin": False}
+        users = [user for user in mongo.db.users.find(to_score)]
 
         # score the brackets against the admin's bracket
-        if bracket[0]["winner"]:
-            for user in users:
-                score = 0
-                for i in range(len(bracket)):
+        for user in users:
+            score = 0
+            for i in range(len(bracket)):
+                # so it doesn't break when scoring not yet complete tournament
+                if bracket[i]["winner"]:
                     if bracket[i]["winner"]["id"] == user["bracket"][i]["winner"]["id"]:
                         score += 2 ** (6-bracket[i]["round"])
-                mongo.db.users.update(
-                    { "_id": bson.objectid.ObjectId(user["_id"]) }, 
-                    { "$set": { "score": score } }
-                )
-        else:
-            for user in users:
-                mongo.db.users.update(
-                    { "_id": bson.objectid.ObjectId(user["_id"]) }, 
-                    { "$set": { "score": 0 } }
-                )
+            # print(user["first_name"], ":", score)
+            mongo.db.users.update(
+                { "_id": bson.objectid.ObjectId(user["_id"]) }, 
+                { "$set": { "score": score } }
+            )
 
         # assign ranks to users
-        users = [user for user in users if not user["is_admin"]]
+        users = [user for user in mongo.db.users.find(to_score)]
         users = sorted(users, key=lambda u: -u["score"])
         rank = 0
         num_consecutive = 1

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { teams } from "../tournament2018";
 import Tournament from '../generateBracket';
 import Game from "./Game";
-import Footer from "./Footer";
 import UserRegister from './UserRegister';
 
 
@@ -138,8 +137,6 @@ class Bracket extends Component {
             <UserRegister onRegister={this.userCreated} />
           </div>
         </div>
-
-        <Footer />
 
       </div>
     );

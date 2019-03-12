@@ -1,0 +1,643 @@
+/*
+ * ============================================================
+ * 
+ *  GGGG   RRRRR   IIII  MM     MM   OOOO   IIII  RRRRR   EEEEE
+ * GG      RR  RR   II   MMM   MMM  OO  OO   II   RR  RR  EE
+ * GG GGG  RRRRR    II   MMMM MMMM  OO  OO   II   RRRRR   EEEEE
+ * GG  GG  RR RR    II   MM MMM MM  OO  OO   II   RR RR   EE
+ *  GGGG   RR  RR  IIII  MM     MM   OOOO   IIII  RR  RR  EEEEE
+ * 
+ * ============================================================
+ * 
+ * Grimoire CSS
+ * https://github.com/wgoode3/grimoire
+ * making a custom version for neo-bracket
+ * https://github.com/wgoode3/neo-bracket
+ * 
+ * ============================================================
+ */
+
+/* Variables can be changed here */
+:root {
+
+  /* Colors are here */
+  /* Patchouli Primary (Purple) */
+  --primary: #7B4283;
+
+  /* Marisa Secondary (Yellow) */
+  --secondary: #FFBA00;
+
+  /* Satori Tertiary (Pink) */
+  --tertiary: #D185A6;
+
+  /* Reimu Danger (Red) */
+  --danger: #E90000; 
+
+  /* Utsuho Caution (Orange-ish) */
+  --caution: #ED9755;
+
+  /* Keine Info (Light Blue) */
+  --info: #89AAFF;
+
+  /* Tenshi Link (Blue) */
+  --link: #0073C1;
+
+  /* Sanae Success (Green) */
+  --success: #58B675;
+
+  /* Momiji White (White) */
+  --white: #FFFFFF;
+
+  /* Youmu Light (Very Light Grey) */
+  --light: #F3F3F3;
+
+  /* Sakuya Silver (Light Grey) */
+  --silver: #BCBCCC;
+
+  /* Nazrin Grey (Grey) */
+  --grey: #878E92;
+
+  /* Aya Dark (Dark Grey) */
+  --dark: #252527;
+
+  /* Rumia Black (No light) */
+  --black: #000000;
+
+  /* Shadow (for use with box-shadow) */
+  --shadow: #999999;
+
+  /* Sizes of things */
+  /* Border radii */
+  --pointyish: 0.1em;
+  --roundish: 0.2em;
+
+  /* Grid System Gutter Size */
+  --gutter: 0.2rem;
+
+  /* Navbar height */
+  --nav: 50px;
+
+  /* Somewhat important container width*/
+  --container: 1200px;
+
+}
+
+/* Some CSS Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* default for selected text would be nice too */
+
+h1, h2, h3, h4, h5, h6, p {
+  font-weight: 400;
+}
+
+/* default for a tag is needed */
+
+strong {
+  font-weight: bold !important;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  vertical-align: top;
+  font-weight: normal;
+}
+
+fieldset, img { 
+  border: 0; 
+}
+
+input, textarea, select, button {
+  font-size: 1em;
+  line-height: 1.1;
+}
+
+label {
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+abbr, acronym {
+  border-bottom: .1rem dotted;
+  cursor: help;
+}
+
+/* Prevents default browser style effects when clicking on buttons or inputs */
+*:active, *:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* Default Styling for many elements */
+
+body {
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+code, pre {
+  font-family: "Lucida Console", Monaco, monospace;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+input, textarea {
+  border-radius: var(--pointyish) !important;
+  cursor: text;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+button, input[type=submit], input[type=reset], input[type=button] {
+  border-radius: var(--roundish) !important;
+  background-color: var(--light);
+  border: 1px solid var(--silver);
+  cursor: pointer !important;
+  padding: 0.3em 0.5em;
+}
+
+button:active, input[type=submit]:active, input[type=reset]:active, input[type=button]:active {
+  box-shadow: 0 0 4px var(--black);
+  filter: brightness(95%);
+}
+
+/*
+ * Text Like inputs:
+ * input[type=text] 
+ * input[type=password] 
+ * input[type=email] 
+ * input[type=date] 
+ * input[type=number] 
+ * input[type=tel]
+ * input[type=url]
+ * input[type=search]
+ *
+ * Button Like inputs:
+ * input[type=file]
+ */
+
+ /* The container class */
+ .container {
+  max-width: var(--container);
+  margin: 0 auto;
+  min-height: 100vh;
+ }
+
+.row {
+  width: 100%;
+  max-width: var(--container);
+}
+
+.row:before, .row:after {
+  content:"";
+  display: table;
+  clear: both;
+}
+
+[class*='col-'] {
+  float: left;
+  min-height: 1px;
+  width: calc(100% / 12);
+  margin: var(--gutter);
+}
+
+.is-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #FFF;
+}
+
+.is-secondary {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: #000;
+}
+
+.is-tertiary {
+  background-color: var(--tertiary) !important;
+  border-color: var(--tertiary) !important;
+  color: #FFF;
+}
+
+.is-dangerous {
+  background-color: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: #FFF;
+}
+
+.is-caution {
+  background-color: var(--caution) !important;
+  border-color: var(--caution) !important;
+  color: #FFF;
+}
+
+.is-info {
+  background-color: var(--info) !important;
+  border-color: var(--info) !important;
+  color: #000;
+}
+
+.is-link {
+  background-color: var(--link) !important;
+  border-color: var(--link) !important;
+  color: #FFF;
+}
+
+.is-successful {
+  background-color: var(--success) !important;
+  border-color: var(--success) !important;
+  color: #FFF;
+}
+
+.is-white {
+  background-color: var(--white) !important;
+  color: #000;
+}
+
+.is-light {
+  background-color: var(--light) !important;
+  color: #000;
+}
+
+.is-silver {
+  background-color: var(--silver) !important;
+  color: #000;
+}
+
+.is-grey {
+  background-color: var(--grey) !important;
+  border-color: var(--grey) !important;
+  color: #FFF;
+}
+
+.is-dark {
+  background-color: var(--dark) !important;
+  border-color: var(--dark) !important;
+  color: #FFF;
+}
+
+.is-black {
+  background-color: var(--black) !important;
+  border-color: var(--black) !important;
+  color: #FFF;
+}
+
+.lighten {
+  filter: brightness(150%);
+}
+
+.darken {
+  filter: brightness(50%);
+}
+
+/* media queries can hang out down here */
+/* Phone size breakpoint */
+@media only screen and (max-width: 719px) {
+  [class*='col-'] { width: calc(100% - calc(var(--gutter) * 2)); }
+}
+
+/* Bigger Phone size breakpoint */
+@media only screen and (min-width: 720px) {
+  .container { --container: 800px; }
+  .col-s-1  { width: calc(100% / 12 * 1  - calc(var(--gutter) * 2)) !important; }
+  .col-s-2  { width: calc(100% / 12 * 2  - calc(var(--gutter) * 2)) !important; }
+  .col-s-3  { width: calc(100% / 12 * 3  - calc(var(--gutter) * 2)) !important; }
+  .col-s-4  { width: calc(100% / 12 * 4  - calc(var(--gutter) * 2)) !important; }
+  .col-s-5  { width: calc(100% / 12 * 5  - calc(var(--gutter) * 2)) !important; }
+  .col-s-6  { width: calc(100% / 12 * 6  - calc(var(--gutter) * 2)) !important; }
+  .col-s-7  { width: calc(100% / 12 * 7  - calc(var(--gutter) * 2)) !important; }
+  .col-s-8  { width: calc(100% / 12 * 8  - calc(var(--gutter) * 2)) !important; }
+  .col-s-9  { width: calc(100% / 12 * 9  - calc(var(--gutter) * 2)) !important; }
+  .col-s-10 { width: calc(100% / 12 * 10 - calc(var(--gutter) * 2)) !important; }
+  .col-s-11 { width: calc(100% / 12 * 11 - calc(var(--gutter) * 2)) !important; }
+  .col-s-12 { width: calc(100% / 12 * 12 - calc(var(--gutter) * 2)) !important; }
+  [class*='col-m-'], [class*='col-l-'] { width: calc(100% - calc(var(--gutter) * 2)); }
+}
+
+/* Tablet size breakpoint */
+@media only screen and (min-width: 960px) {
+  .container { --container: 1000px; }
+  .col-s-1  { width: calc(100% / 12 * 1  - calc(var(--gutter) * 2)); }
+  .col-s-2  { width: calc(100% / 12 * 2  - calc(var(--gutter) * 2)); }
+  .col-s-3  { width: calc(100% / 12 * 3  - calc(var(--gutter) * 2)); }
+  .col-s-4  { width: calc(100% / 12 * 4  - calc(var(--gutter) * 2)); }
+  .col-s-5  { width: calc(100% / 12 * 5  - calc(var(--gutter) * 2)); }
+  .col-s-6  { width: calc(100% / 12 * 6  - calc(var(--gutter) * 2)); }
+  .col-s-7  { width: calc(100% / 12 * 7  - calc(var(--gutter) * 2)); }
+  .col-s-8  { width: calc(100% / 12 * 8  - calc(var(--gutter) * 2)); }
+  .col-s-9  { width: calc(100% / 12 * 9  - calc(var(--gutter) * 2)); }
+  .col-s-10 { width: calc(100% / 12 * 10 - calc(var(--gutter) * 2)); }
+  .col-s-11 { width: calc(100% / 12 * 11 - calc(var(--gutter) * 2)); }
+  .col-s-12 { width: calc(100% / 12 * 12 - calc(var(--gutter) * 2)); }
+  .col-m-1  { width: calc(100% / 12 * 1  - calc(var(--gutter) * 2)) !important; }
+  .col-m-2  { width: calc(100% / 12 * 2  - calc(var(--gutter) * 2)) !important; }
+  .col-m-3  { width: calc(100% / 12 * 3  - calc(var(--gutter) * 2)) !important; }
+  .col-m-4  { width: calc(100% / 12 * 4  - calc(var(--gutter) * 2)) !important; }
+  .col-m-5  { width: calc(100% / 12 * 5  - calc(var(--gutter) * 2)) !important; }
+  .col-m-6  { width: calc(100% / 12 * 6  - calc(var(--gutter) * 2)) !important; }
+  .col-m-7  { width: calc(100% / 12 * 7  - calc(var(--gutter) * 2)) !important; }
+  .col-m-8  { width: calc(100% / 12 * 8  - calc(var(--gutter) * 2)) !important; }
+  .col-m-9  { width: calc(100% / 12 * 9  - calc(var(--gutter) * 2)) !important; }
+  .col-m-10 { width: calc(100% / 12 * 10 - calc(var(--gutter) * 2)) !important; }
+  .col-m-11 { width: calc(100% / 12 * 11 - calc(var(--gutter) * 2)) !important; }
+  .col-m-12 { width: calc(100% / 12 * 12 - calc(var(--gutter) * 2)) !important; }
+  [class*='col-l-'] { width: calc(100% - calc(var(--gutter) * 2)); }
+}
+
+/* Laptop size breakpoint */
+@media only screen and (min-width: 1280px) {
+  .container { --container: 1200px; }
+  .col-l-1 , .col-m-1 , .col-s-1  { width: calc(100% / 12 * 1  - calc(var(--gutter) * 2)); }
+  .col-l-2 , .col-m-2 , .col-s-2  { width: calc(100% / 12 * 2  - calc(var(--gutter) * 2)); }
+  .col-l-3 , .col-m-3 , .col-s-3  { width: calc(100% / 12 * 3  - calc(var(--gutter) * 2)); }
+  .col-l-4 , .col-m-4 , .col-s-4  { width: calc(100% / 12 * 4  - calc(var(--gutter) * 2)); }
+  .col-l-5 , .col-m-5 , .col-s-5  { width: calc(100% / 12 * 5  - calc(var(--gutter) * 2)); }
+  .col-l-6 , .col-m-6 , .col-s-6  { width: calc(100% / 12 * 6  - calc(var(--gutter) * 2)); }
+  .col-l-7 , .col-m-7 , .col-s-7  { width: calc(100% / 12 * 7  - calc(var(--gutter) * 2)); }
+  .col-l-8 , .col-m-8 , .col-s-8  { width: calc(100% / 12 * 8  - calc(var(--gutter) * 2)); }
+  .col-l-9 , .col-m-9 , .col-s-9  { width: calc(100% / 12 * 9  - calc(var(--gutter) * 2)); }
+  .col-l-10, .col-m-10, .col-s-10 { width: calc(100% / 12 * 10 - calc(var(--gutter) * 2)); }
+  .col-l-11, .col-m-11, .col-s-11 { width: calc(100% / 12 * 11 - calc(var(--gutter) * 2)); }
+  .col-l-12, .col-m-12, .col-s-12 { width: calc(100% / 12 * 12 - calc(var(--gutter) * 2)); }
+  .col-l-1  { width: calc(100% / 12 * 1  - calc(var(--gutter) * 2)) !important; }
+  .col-l-2  { width: calc(100% / 12 * 2  - calc(var(--gutter) * 2)) !important; }
+  .col-l-3  { width: calc(100% / 12 * 3  - calc(var(--gutter) * 2)) !important; }
+  .col-l-4  { width: calc(100% / 12 * 4  - calc(var(--gutter) * 2)) !important; }
+  .col-l-5  { width: calc(100% / 12 * 5  - calc(var(--gutter) * 2)) !important; }
+  .col-l-6  { width: calc(100% / 12 * 6  - calc(var(--gutter) * 2)) !important; }
+  .col-l-7  { width: calc(100% / 12 * 7  - calc(var(--gutter) * 2)) !important; }
+  .col-l-8  { width: calc(100% / 12 * 8  - calc(var(--gutter) * 2)) !important; }
+  .col-l-9  { width: calc(100% / 12 * 9  - calc(var(--gutter) * 2)) !important; }
+  .col-l-10 { width: calc(100% / 12 * 10 - calc(var(--gutter) * 2)) !important; }
+  .col-l-11 { width: calc(100% / 12 * 11 - calc(var(--gutter) * 2)) !important; }
+  .col-l-12 { width: calc(100% / 12 * 12 - calc(var(--gutter) * 2)) !important; }
+}
+
+/* Desktop size breakpoint */
+@media only screen and (min-width: 1520px) {
+  .container { --container: 1400px; }
+}
+
+/*
+ * TODO:
+ *
+ * alert (with burn in effect)
+ * navbar (ribbon?)
+ * magic-circle (with border image)
+ * alchemy (media) (pinned class, )
+ * polygonal round buttons
+ * tooltips
+ *
+ */
+
+.cover {
+  position: relative;
+  font-size: 2em;
+  min-height: 100px;
+  padding: 50px;
+  margin-bottom: var(--gutter);
+  background-size: 25%;
+  box-shadow: inset 0 0 0 1000px rgba(50,0,50,.8);
+  color: white;
+  padding: 100px 50px;
+}
+
+.cover:before {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 5px solid gold;
+  border-radius: var(--roundish);
+}
+
+.cover * {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  border-radius: 0;
+  font-size: 1.2rem;
+  max-width: calc( 100% - 1px) !important;
+}
+
+.input-group > input::placeholder, .input-group > textarea::placeholder {
+  color: transparent;
+}
+
+.input-group > label, .input-group > input, .input-group > textarea {
+  display: block;
+  width: 100%;
+  cursor: text;
+}
+
+.input-group > label {
+  color: #777;
+  position: relative;
+  left: 0.2em;
+  top: 1.4em;
+}
+
+.input-group > input, .input-group > textarea {
+  border: 0;
+  border-bottom: 2px solid var(--silver);
+  line-height: 1.5;
+  padding: 0.2em 0;
+}
+
+.input-group > input:placeholder-shown:focus, .input-group > textarea:placeholder-shown:focus {
+  border-color: var(--primary);
+}
+
+.input-group > input:placeholder-shown:focus + label, .input-group > textarea:placeholder-shown:focus + label {
+  color: var(--primary);
+  animation-name: floating-label;
+  animation-duration: 100ms;
+  animation-timing-function: linear;
+  left: 0;
+  top: 0;
+}
+
+@keyframes floating-label {
+  0% {
+    left: 0.2em;
+    top: 1.4em;
+  }
+  100% {
+    left: 0;
+    top: 0;
+    color: var(--primary)
+  }
+}
+
+.input-group > input:not(:placeholder-shown) + label, .input-group > textarea:not(:placeholder-shown) + label {
+  left: 0;
+  top: 0;
+  color: #777;
+}
+
+.input-group > input:not(:placeholder-shown):focus + label, .input-group > textarea:not(:placeholder-shown):focus + label {
+  color: var(--primary);
+}
+
+/* Forces input group to not take up too much space */
+/* Something weird must be happening there */
+div.input-group {
+  max-width: calc( 100% - 0.2em) !important;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td, .table th {
+  line-height: 2 !important;
+  text-align: left;
+  padding: var(--gutter);
+}
+
+.table tr {
+  border-bottom: 1px solid #999;
+}
+
+.table tr:first-child {
+  border-top: 1px solid #999;
+}
+
+.striped tr:nth-child(even) {
+  background-color: var(--light);
+}
+
+.centered td, .centered th {
+  text-align: center;
+}
+
+.spell {
+  padding: 100px 50px;
+  position: relative;
+  margin: 0 auto;
+  background-color: inherit;
+  /*-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.initial:first-letter {
+  font-size: 3em;
+  line-height: 1em;
+  margin: -0.05em 0.2em 0em 0em;
+  float: left;
+}
+
+.footer {
+  max-width: var(--container);
+  margin: 0 auto;
+  color: var(--dark);
+}
+
+.navbar {
+  width: 100%;
+  height: var(--nav);
+  line-height: var(--nav); 
+  margin-bottom: 1em;
+}
+
+.navbar p, .navbar a {
+  text-decoration: none;
+  font-size: 1.2em; 
+  margin: 5px 0;
+  padding: 5px 0;
+}
+
+.navbar button {
+  height: calc(var(--nav) - 1em);
+  margin-left: 0;
+  font-size: 1.1rem; 
+}
+
+.navbar input { 
+  height: calc(var(--nav) - 1em);
+  font-size: 1.1rem;
+  border: 1px solid var(--silver);
+  padding: 0.3em 0.5em;
+  margin-right: 0;
+}
+
+/* For use with buttons or inline inputs */
+.group { border-radius: 0 !important; }
+.group > input:first-child, .group > button:first-child { border-radius: 0.2em 0 0 0.2em !important; }
+.group > input:last-child, .group > button:last-child { border-radius: 0 0.2em 0.2em 0 !important; }
+
+.navbar:before, .navbar:after {
+  content:"";
+  display: table;
+  clear: both;
+}
+
+.navbar ul li { 
+  display: inline; position: relative;
+  float: left; 
+}
+
+.nav-left { float: left; }
+.nav-right { float: right; }
+.nav-left li { margin-right: 1em; }
+.nav-left li:first-child { margin-left: calc(2 * var(--gutter)); }
+.nav-right li { margin-left: 1em; }
+.nav-right li:last-child { margin-right: calc(2 * var(--gutter)); }
+.nav-dark { background-color: var(--dark); }
+.nav-dark a, .nav-dark p { color: var(--light); }
+.nav-light { background-color: var(--light); }
+.nav-light a, .nav-light p { color: var(--dark); }
+.nav-light .active, .nav-light a:hover { border-bottom: 3px solid var(--dark); }
+.nav-dark .active, .nav-dark a:hover { border-bottom: 3px solid var(--light); }
+
+.dropdown .dropdown-content {  
+  background-color: inherit;
+  font-family: inherit;
+  color: inherit;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 1001;
+  margin-top: -1px;
+  padding: 0.5em;
+}
+
+.dropdown-content li {
+  margin: 0 !important;
+  line-height: 1.2;
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  display: block;
+  border-bottom: 3px solid transparent;
+}
+
+.dropdown:hover .dropdown-content { display: block; }
+.nav-dark .dropdown-content { background-color: var(--dark); }
+.nav-dark .dropdown-content a { color: var(--light); }
+.nav-light .dropdown-content { background-color: var(--light); }
+.nav-light .dropdown-content a { color: var(--dark); }
