@@ -154,17 +154,24 @@ class User:
         # we get the user's _id back as an object_id
         return result
 
-    # TODO: check if this ever gets used
-    def get_all(self):
-        users = [user for user in mongo.db.users.find({})]
-        for i in range(len(users)):
-            users[i]["_id"] = str(users[i]["_id"])
-        return users
-
     def get_leaderboard(self):
-        users = [user for user in mongo.db.users.find({"is_admin": False})]
+        # get all the users who aren't the admin
+        match = {"is_admin": False}
+        # only the fields that should be sent back
+        # don't sent email or password
+        fields = {
+            "first_name": 1,
+            "last_name": 1,
+            "location": 1, 
+            "avatar": 1,
+            "bracket": 1,
+            "score": 1,
+            "rank": 1
+        }
+        users = [user for user in mongo.db.users.find(match, fields)]
+        # I don't want to send the _id out either
         for i in range(len(users)):
-            users[i]["_id"] = str(users[i]["_id"])
+            users[i].pop('_id', None)
         return sorted(users, key=lambda u: -u["score"])
         
 
