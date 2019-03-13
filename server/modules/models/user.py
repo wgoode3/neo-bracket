@@ -165,6 +165,7 @@ class User:
             "location": 1, 
             "avatar": 1,
             "bracket": 1,
+            "bracket_complete": 1,
             "score": 1,
             "rank": 1
         }
