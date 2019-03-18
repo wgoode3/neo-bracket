@@ -52,9 +52,23 @@ class Bracket extends Component {
   }
 
   componentDidMount = () => {
+    let id = localStorage.getItem("user_id");
+    if(id !== null){
+      this.checkCreated(id);
+    }
     this.setState({
-      user_exists: localStorage.getItem("user_id") !== null,
+      user_exists: id !== null,
       games: new Tournament(teams).games
+    });
+  }
+
+  checkCreated = (id) => {
+    axios.get(`/api/users/${id}`).then( res => {
+      if(res.data.user.bracket_complete){
+        this.props.history.push("/mybracket");
+      }
+    }).catch( err => {
+      console.log("Something went wrong", err);
     });
   }
 

@@ -44,6 +44,7 @@ class UserRegister extends Component {
           this.setState({errors: res.data.errors});
         }else{
           localStorage.setItem("user_id", res.data.user_id);
+          console.log("in register",localStorage.getItem("user_id"));
           this.props.onRegister();
           if(this.props.location.pathname === "/sign_up"){
             this.props.history.push("/bracket");
