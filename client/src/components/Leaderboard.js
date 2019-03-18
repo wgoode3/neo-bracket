@@ -36,14 +36,10 @@ class Leaderboard extends Component {
     
   }
 
-  view = (user_id, e) => {
+  view = (index, e) => {
     e.preventDefault();
-    for(let user of this.state.users) {
-      if(user._id === user_id) {
-        this.setState({ info: user.bracket });
-        break
-      }
-    }
+    // get the bracket at position index
+    this.setState({ info: this.state.filter[index].bracket });
     document.getElementById("bracket-modal").classList.add("activated");
   }
 
@@ -125,7 +121,7 @@ class Leaderboard extends Component {
                       <a 
                         href="#!" 
                         className="modal-link" 
-                        onClick={this.view.bind(this, user._id)}
+                        onClick={this.view.bind(this, index)}
                       >
                         View Bracket
                       </a> : 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { teams } from '../tournament2019';
 
 class ViewGame extends Component {
 
@@ -27,14 +27,16 @@ class ViewGame extends Component {
     }
   }
 
+  // small change: put in the team name based on what is in the tournament2019.json
+  // that way I won't have to make edits for the play-in-games after the fact 
   render() {
     return (
       <div id={"game" + this.props.game.id}>
         <button className={this.state.team1}>
-          <span>{this.props.game.team1.seed} {this.props.game.team1.name}</span>
+          <span>{this.props.game.team1.seed} {teams[this.props.game.team1.id].name}</span>
         </button>
         <button className={this.state.team2}>
-          <span>{this.props.game.team2.seed} {this.props.game.team2.name}</span>
+          <span>{this.props.game.team2.seed} {teams[this.props.game.team2.id].name}</span>
         </button>
       </div>
     );

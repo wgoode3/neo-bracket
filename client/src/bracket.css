@@ -20,6 +20,15 @@
   border-bottom: 2px solid var(--grey);;
   border-radius: 0px !important;
   background-color: var(--light);
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+/* show long teamnames if user hover's over them */
+
+[id*='game'] button:hover {
+  overflow: visible;
 }
 
 [id*='game'] button:disabled {

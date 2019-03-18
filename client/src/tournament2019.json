@@ -1,322 +1,322 @@
 {
 	"about": "2019 NCAA Men's Basketball Tournament",
-	"start": "2019-03-21 12:00 +0",
+	"start": "2019-03-21 16:15 +0",
 	"teams": [
 		{
 			"id": 0,
-			"name": "UVA",
+			"name": "Duke",
 			"seed": 1,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 1,
-			"name": "UMBC",
+			"name": "NCCentral/NDakotaSt",
 			"seed": 16,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 2,
-			"name": "Creighton",
+			"name": "VCU",
 			"seed": 8,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 3,
-			"name": "Kansas State",
+			"name": "UCF",
 			"seed": 9,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 4,
-			"name": "Kentucky",
+			"name": "Mississippi St",
 			"seed": 5,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 5,
-			"name": "Davidson",
+			"name": "Liberty",
 			"seed": 12,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 6,
-			"name": "Arizona",
+			"name": "Virginia Tech",
 			"seed": 4,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 7,
-			"name": "Buffalo",
+			"name": "Saint Louis",
 			"seed": 13,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 8,
-			"name": "Miami",
+			"name": "Maryland",
 			"seed": 6,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 9,
-			"name": "Loyola-Chicago",
+			"name": "Belmont/Temple",
 			"seed": 11,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 10,
-			"name": "Tennessee",
+			"name": "LSU",
 			"seed": 3,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 11,
-			"name": "Wright St",
+			"name": "Yale",
 			"seed": 14,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 12,
-			"name": "Nevada",
+			"name": "Louisville",
 			"seed": 7,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 13,
-			"name": "Texas",
+			"name": "Minnesota",
 			"seed": 10,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 14,
-			"name": "Cincinnati",
+			"name": "Michigan St",
 			"seed": 2,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 15,
-			"name": "Georgia St",
+			"name": "Bradley",
 			"seed": 15,
-			"region": "South"
+			"region": "East"
 		},
 		{
 			"id": 16,
-			"name": "Xavier",
+			"name": "Gonzaga",
 			"seed": 1,
 			"region": "West"
 		},
 		{
 			"id": 17,
-			"name": "Texas Southern",
+			"name": "FDickinson/PrarieVw",
 			"seed": 16,
 			"region": "West"
 		},
 		{
 			"id": 18,
-			"name": "Missouri",
+			"name": "Syracuse",
 			"seed": 8,
 			"region": "West"
 		},
 		{
 			"id": 19,
-			"name": "Florida State",
+			"name": "Baylor",
 			"seed": 9,
 			"region": "West"
 		},
 		{
 			"id": 20,
-			"name": "Ohio State",
+			"name": "Marquette",
 			"seed": 5,
 			"region": "West"
 		},
 		{
 			"id": 21,
-			"name": "South Dakota St",
+			"name": "Murray St",
 			"seed": 12,
 			"region": "West"
 		},
 		{
 			"id": 22,
-			"name": "Gonzaga",
+			"name": "Florida St",
 			"seed": 4,
 			"region": "West"
 		},
 		{
 			"id": 23,
-			"name": "UNC Greensboro",
+			"name": "Vermont",
 			"seed": 13,
 			"region": "West"
 		},
 		{
 			"id": 24,
-			"name": "Houston",
+			"name": "Buffalo",
 			"seed": 6,
 			"region": "West"
 		},
 		{
 			"id": 25,
-			"name": "San Diego St",
+			"name": "ArizonaSt/StJohn's",
 			"seed": 11,
 			"region": "West"
 		},
 		{
 			"id": 26,
-			"name": "Michigan",
+			"name": "Texas Tech",
 			"seed": 3,
 			"region": "West"
 		},
 		{
 			"id": 27,
-			"name": "Montana",
+			"name": "Northern Ky",
 			"seed": 14,
 			"region": "West"
 		},
 		{
 			"id": 28,
-			"name": "Texas A&M",
+			"name": "Nevada",
 			"seed": 7,
 			"region": "West"
 		},
 		{
 			"id": 29,
-			"name": "Providence",
+			"name": "Florida",
 			"seed": 10,
 			"region": "West"
 		},
 		{
 			"id": 30,
-			"name": "UNC",
+			"name": "Michigan",
 			"seed": 2,
 			"region": "West"
 		},
 		{
 			"id": 31,
-			"name": "Lipscomb",
+			"name": "Montana",
 			"seed": 15,
 			"region": "West"
 		},
 		{
 			"id": 32,
-			"name": "Villanova",
+			"name": "UVA",
 			"seed": 1,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 33,
-			"name": "Radford",
+			"name": "Gardner-Webb",
 			"seed": 16,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 34,
-			"name": "Virginia Tech",
+			"name": "Mississippi",
 			"seed": 8,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 35,
-			"name": "Alabama",
+			"name": "Oklahoma",
 			"seed": 9,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 36,
-			"name": "WVU",
+			"name": "Wisconsin",
 			"seed": 5,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 37,
-			"name": "Murray State",
+			"name": "Oregon",
 			"seed": 12,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 38,
-			"name": "Wichita State",
+			"name": "Kansas St",
 			"seed": 4,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 39,
-			"name": "Marchall",
+			"name": "UC Irvine",
 			"seed": 13,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 40,
-			"name": "Florida",
+			"name": "Villanova",
 			"seed": 6,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 41,
-			"name": "St Bonaventure",
+			"name": "St Mary's",
 			"seed": 11,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 42,
-			"name": "Texas Tech",
+			"name": "Purdue",
 			"seed": 3,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 43,
-			"name": "SF Austin",
+			"name": "Old Dominion",
 			"seed": 14,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 44,
-			"name": "Arkansas",
+			"name": "Cincinnati",
 			"seed": 7,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 45,
-			"name": "Butler",
+			"name": "Iowa",
 			"seed": 10,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 46,
-			"name": "Purdue",
+			"name": "Tennessee",
 			"seed": 2,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 47,
-			"name": "CSU Fullerton",
+			"name": "Colgate",
 			"seed": 15,
-			"region": "East"
+			"region": "South"
 		},
 		{
 			"id": 48,
-			"name": "Kansas",
+			"name": "UNC",
 			"seed": 1,
 			"region": "Midwest"
 		},
 		{
 			"id": 49,
-			"name": "Penn",
+			"name": "Iona",
 			"seed": 16,
 			"region": "Midwest"
 		},
 		{
 			"id": 50,
-			"name": "Seton Hall",
+			"name": "Utah St",
 			"seed": 8,
 			"region": "Midwest"
 		},
 		{
 			"id": 51,
-			"name": "NC State",
+			"name": "Washington",
 			"seed": 9,
 			"region": "Midwest"
 		},
 		{
 			"id": 52,
-			"name": "Clemson",
+			"name": "Auburn",
 			"seed": 5,
 			"region": "Midwest"
 		},
@@ -328,61 +328,61 @@
 		},
 		{
 			"id": 54,
-			"name": "Auburn",
+			"name": "Kansas",
 			"seed": 4,
 			"region": "Midwest"
 		},
 		{
 			"id": 55,
-			"name": "Charleston",
+			"name": "Northeastern",
 			"seed": 13,
 			"region": "Midwest"
 		},
 		{
 			"id": 56,
-			"name": "TCU",
+			"name": "Iowa St",
 			"seed": 6,
 			"region": "Midwest"
 		},
 		{
 			"id": 57,
-			"name": "Syracuse",
+			"name": "Ohio St",
 			"seed": 11,
 			"region": "Midwest"
 		},
 		{
 			"id": 58,
-			"name": "Michigan State",
+			"name": "Houston",
 			"seed": 3,
 			"region": "Midwest"
 		},
 		{
 			"id": 59,
-			"name": "Bucknell",
+			"name": "Georgia St",
 			"seed": 14,
 			"region": "Midwest"
 		},
 		{
 			"id": 60,
-			"name": "Rhode Island",
+			"name": "Wofford",
 			"seed": 7,
 			"region": "Midwest"
 		},
 		{
 			"id": 61,
-			"name": "Oklahoma",
+			"name": "Seton Hall",
 			"seed": 10,
 			"region": "Midwest"
 		},
 		{
 			"id": 62,
-			"name": "Duke",
+			"name": "Kentucky",
 			"seed": 2,
 			"region": "Midwest"
 		},
 		{
 			"id": 63,
-			"name": "Iona",
+			"name": "Abilene Christian",
 			"seed": 15,
 			"region": "Midwest"
 		}
