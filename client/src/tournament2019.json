@@ -10,7 +10,7 @@
 		},
 		{
 			"id": 1,
-			"name": "NCCentral/NDakotaSt",
+			"name": "North Dakota St",
 			"seed": 16,
 			"region": "East"
 		},
@@ -58,7 +58,7 @@
 		},
 		{
 			"id": 9,
-			"name": "Belmont/Temple",
+			"name": "Belmont",
 			"seed": 11,
 			"region": "East"
 		},
@@ -106,7 +106,7 @@
 		},
 		{
 			"id": 17,
-			"name": "FDickinson/PrarieVw",
+			"name": "F. Dickinson",
 			"seed": 16,
 			"region": "West"
 		},
@@ -154,7 +154,7 @@
 		},
 		{
 			"id": 25,
-			"name": "ArizonaSt/StJohn's",
+			"name": "Arizona St",
 			"seed": 11,
 			"region": "West"
 		},

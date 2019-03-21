@@ -69,6 +69,7 @@ class UserEdit extends Component {
   imageUpload = (e) => {
     let file = e.target.files[0];
     // ugly validations here
+    console.log(file.size);
     if(!valid_filetype(file.name)) {
       this.setState({file_error: "Image must be jpg, png, or gif"});
       return;
