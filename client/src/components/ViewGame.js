@@ -11,7 +11,7 @@ class ViewGame extends Component {
     }
   }
 
-  componentDidMount = (e) => {
+  componentDidMount = () => {
     if(this.props.game.winner !== null){
       if(this.props.game.winner.id === this.props.game.team1.id){
         this.setState({
@@ -24,6 +24,19 @@ class ViewGame extends Component {
           team2: "win"
         });
       }
+    }
+  }
+
+  // update where the win and loss classes are if the user views a different bracket
+  componentWillUpdate = () => {
+    let newState = {};
+    if(this.props.game.winner.id === this.props.game.team1.id){
+      newState = { team1: "win", team2: "loss" };
+    }else{
+      newState = { team1: "loss", team2: "win" };
+    }
+    if(this.state.team1 !== newState.team1){
+      this.setState(newState);
     }
   }
 
